@@ -1,0 +1,26 @@
+@font-face{
+	font-family: AdobeArabic;
+	src: url('Adobe.Arabic-Regular.otf');
+}
+/*
+@font-face{
+	font-family: AdobeArabic;
+	src: url('Adobe.Arabic-Bold.otf');
+	font-weight: bold; 
+}
+
+@font-face{
+	font-family: AdobeArabic;
+	src: url('Adobe.Arabic-Italic.otf');
+	font-weight: italic; 
+}
+*/
+
+@font-face{
+	font-family: Yekan;
+	src: url('Yekan.ttf');
+}
+
+body {
+	font-family: Yekan;
+}

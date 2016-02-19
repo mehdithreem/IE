@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+
+	<title>صدور مجوز</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../common/bootstrap.min.css" rel="stylesheet">
+	<link href="../common/common.css" rel="stylesheet">
+	<script src="../common/header.js"></script>
+
+	<script>
+	</script>
+
+	<!-- Custom styles for this template -->
+	<link href="../css/jumbotron-narrow.css" rel="stylesheet">
+</head>
+
+<body dir="rtl">
+	<div class="container">
+	<div id="myheader"></div>
+
+	<div class="jumbotron">
+		<h1>صدور مجوز جدید</h1>
+		<p class="lead"></p>
+	</div>
+
+	<div class="row marketing">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-10" dir="ltl">
+				<select class="form-control" id="inCountry">
+				<option>واردات کالای فلزی</option>
+				<option>واردات فلز خام</option>
+				<option>واردات فلز گرانبها</option>
+				<option>سایر موارد</option>
+			</select>
+			</div>
+			<label for="inTajerID" class="col-sm-2 control-label">نوع مجوز</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inTajerName" disabled placeholder="وزارت فولاد">
+			</div>
+			<label for="inTajerName" class="col-sm-2 control-label">نهاد صادر کننده‌ی مجوز</label>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<input type="number" class="form-control" id="inTajerID">
+			</div>
+			<label for="inTajerID" class="col-sm-2 control-label">شماره‌ی ملی تاجر</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inTajerName">
+			</div>
+			<label for="inTajerName" class="col-sm-2 control-label">نام تاجر</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="inTajerLastName">
+			</div>
+			<label for="inTajerLastName" class="col-sm-2 control-label">نام خانوادگی تاجر</label>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<input type="date" class="form-control" id="inDate">
+			</div>
+			<label for="inDate" class="col-sm-2 control-label">تاریخ صدور</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<div class="input-group" dir="ltl">
+					<span class="input-group-addon rtl">روز</span>
+					<input type="number" class="form-control" id="inTotalVal" aria-describedby="inTotalValStatus">
+				</div>
+			</div>
+			<label for="inTotalVal" class="col-sm-2 control-label">مدت اعتبار</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+				<div class="input-group" dir="ltl">
+					<span class="input-group-addon rtl">$</span>
+					<input type="number" class="form-control" id="inTotalVal" aria-describedby="inTotalValStatus">
+				</div>
+			</div>
+			<label for="inTotalVal" class="col-sm-2 control-label">ارزش کل</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10" dir="ltl">
+			<select class="form-control" multiple id="inCountry">
+				<option>چین</option>
+				<option>هند</option>
+				<option>کره</option>
+				<option>افعانستان</option>
+				<option>تاجیکستان</option>
+				<option>ترکیه</option>
+			</select>
+			</div>
+			<label for="inCountry" class="col-sm-2 control-label">کشور مبدا</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10" dir="ltl" id="inIntype">
+				<label class="checkbox-inline">
+					<input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox1" value="option1"> زمینی
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox2" value="option2"> هوایی
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox3" value="option3"> دریایی
+				</label>
+			</div>
+			<label for="inIntype" class="col-sm-2 control-label">نحوه‌ی ورود به کشور</label>
+		</div>
+		<hr>
+		<div class='form-group'>
+			<div class='col-sm-10'>
+				<input type='text' class='form-control' id='kala&idName'>
+			</div>
+			<label for='kala1Name' class='col-sm-2 control-label'>نام کالا</label>
+		</div>
+		<div class='form-group'>
+			<div class='col-sm-10'>
+				<input type='text' class='form-control' id='kala1Company'>
+			</div>
+			<label for='kala1Company' class='col-sm-2 control-label'>شرکت سازنده</label>
+		</div>
+		<div class='form-group'>
+			<div class='col-sm-10'>
+				<input type='number' class='form-control' id='kala1Count'>
+			</div>
+			<label for='kala1Count' class='col-sm-2 control-label'>تعداد</label>
+		</div>
+		<div class="form-group" dir="ltl">
+		<div class="col-sm-10">
+			<button type="submit" class="btn btn-default" onclick='alert("شما قادر به صدور این مجوز نیستید");'>صدور مجوز</button>
+		</div>
+		</div>
+	</form>
+	</div>
+
+	<footer dir="ltl" class="footer">
+		<p>&copy; Movaheddi, Mahdizadeh, Mirzaie.</p>
+	</footer>
+
+	</div> <!-- /container -->
+
+	<script>
+		replaceHeader('licen-active');
+	</script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="../common/bootstrap.min.js"></script>
+
+</body>
+</html>
