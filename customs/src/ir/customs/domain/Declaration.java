@@ -4,9 +4,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
 public class Declaration {
+	@Convert(converter = ir.customs.data.LocalDatePersistenceConverter.class)
+    @Column(name = "TIME")
 	private final LocalDate declareDate;
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
 	private final Integer id;
+	
+	@Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
 	private Status currStatus;
 	
 	private Merchant merchant;
