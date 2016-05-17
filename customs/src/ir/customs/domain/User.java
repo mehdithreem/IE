@@ -3,9 +3,12 @@ package ir.customs.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
@@ -16,7 +19,7 @@ public abstract class User {
 	@Column( name = "NID")
 	private final String nationalID;
 	
-	@Column( name = "PWD")
+	@Column( name = "PASSWORD")
 	private String password;
 	
 	@Column( name = "FIRST_NAME")
@@ -25,7 +28,10 @@ public abstract class User {
 	@Column( name = "LAST_NAME")
 	private String lastName;
 	
-	@OneToMany
+	@ElementCollection
+    @CollectionTable(name = "ACCESS_LIST")
+    @MapKeyColumn(name = "ACCESS")
+    @Column(name = "ACC_BOOLEAN")
 	protected Map<Access, Boolean> access;
 
 //	protected User() {

@@ -29,7 +29,6 @@ public class Declaration {
 	private Status currStatus;
 	
 	@ManyToOne
-	@Column(name = "MERCHANT")
 	private Merchant merchant;
 	
 	@ElementCollection
