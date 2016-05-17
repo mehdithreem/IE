@@ -1,5 +1,7 @@
 package ir.customs.domain;
 
+import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,15 +9,21 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class License {
-	private final String title;
 	@Id
 	@GeneratedValue
+	private Integer id;
+	
+	@Column(name = "TITLE")
+	private final String title;
+	
+	@Column(name = "VALID_DURATION")
 	private final Integer validityDuration; // in days
+	
 	@ManyToOne
 	private final Agent issuer;
 	
-	protected License() {
-	}
+//	protected License() {
+//	}
 
 	public License(String title, Integer validityDuration, Agent issuer) {
 		this.title = title;

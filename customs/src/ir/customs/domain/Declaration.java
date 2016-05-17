@@ -22,7 +22,7 @@ public class Declaration {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private final Integer id;
+	private Integer id;
 	
 	@Enumerated(EnumType.STRING)
     @Column(name = "STATUS")
@@ -55,10 +55,9 @@ public class Declaration {
 		this.id = newID;
 	}
 	
-	public Declaration(LocalDate declareDate, Integer id, Merchant merchant, List<Good> goods,
+	public Declaration(LocalDate declareDate, Merchant merchant, List<Good> goods,
 			String country, Transport tarsnportType) {
 		this.declareDate = declareDate;
-		this.id = id;
 		this.currStatus = Status.PENDING;
 		this.merchant = merchant;
 		this.goods = goods;

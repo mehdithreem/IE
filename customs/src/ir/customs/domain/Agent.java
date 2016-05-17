@@ -1,13 +1,15 @@
 package ir.customs.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Agent extends User {
+	@Column(name = "ORG_NAME")
 	private final String organizationName;
 
-	protected Agent() {
-	}
+//	protected Agent() {
+//	}
 
 	public String getOrganizationName() {
 		return organizationName;

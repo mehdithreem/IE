@@ -9,7 +9,6 @@ import ir.customs.data.DeclarationRepository;
 import ir.customs.data.MerchantRepository;
 
 public class DeclarationManager {
-	private Integer idGen = 100;
 	
 	private static DeclarationManager theManager = new DeclarationManager();
 	public static DeclarationManager getManager() {
@@ -57,17 +56,12 @@ public class DeclarationManager {
 		}
 		
 		Transport type = Transport.getFromPersianName(transportPersianName);
-		Integer id = generateID();
 		
-		Declaration fin = new Declaration(LocalDate.now(),id,owner,goodInsts,sourceCountry, type);
+		Declaration fin = new Declaration(LocalDate.now(),owner,goodInsts,sourceCountry, type);
 		owner.addDeclaration(fin);
 		
-		DeclarationRepository.getRepository().add(id, fin);
+//		DeclarationRepository.getRepository().add(id, fin);
 		
-		return id;
-	}
-	
-	private Integer generateID() {
-		return idGen++;
+		return fin.getId();
 	}
 }

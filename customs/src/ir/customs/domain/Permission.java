@@ -47,10 +47,9 @@ public class Permission {
 //	protected Permission() {
 //	}
 
-	public Permission(Integer id, Merchant owner, License license, Integer totalValue, String country,
+	public Permission(Merchant owner, License license, Integer totalValue, String country,
 			Transport tarsnportType, String goodName, String goodProducer, String goodCount) {
 		this.permitDate = LocalDate.now();
-		this.id = id;
 		this.owner = owner;
 		this.license = license;
 		this.totalValue = totalValue;
