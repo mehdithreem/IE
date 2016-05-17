@@ -11,7 +11,7 @@ public class Good {
 	@Column(name = "WEIGHT")
 	private final Integer weight;
 	
-	@Column(name = "COUNT")
+	@Column(name = "CNT")
 	private final Integer count;
 	
 	@Column(name = "UNIT_PRICE")
@@ -20,8 +20,13 @@ public class Good {
 	@Column(name = "PRODUCER")
 	private final String producer;
 	
-//	protected Good() {
-//	}
+	protected Good() {
+		name = null;
+		weight = null;
+		count = null;
+		producer = null;
+		unitPrice = null;
+	}
 
 	public Good(String name, String producer, Integer weight, Integer count, Integer unitPrice) {
 		this.name = name;

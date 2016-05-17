@@ -1,10 +1,10 @@
 package ir.customs.domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name ="ADMIN")
+@DiscriminatorValue("ADMIN")  
 public class Admin extends User {
 
 	public Admin(String nationalID, String password, String firstName, String lastName) {
@@ -13,6 +13,10 @@ public class Admin extends User {
 		super.access.replace(Access.CreateUser, true);
 		super.access.replace(Access.EditUser, true);
 		super.access.replace(Access.ViewUser, true);
+	}
+	
+	protected Admin() {
+
 	}
 
 }

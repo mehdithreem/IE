@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
+import ir.customs.domain.HibernateUtils;
 import ir.customs.presentation.LoginWindowController;
 import ir.customs.presentation.MainWindowController;
 import javafx.application.Application;
@@ -91,7 +92,8 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-    	UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
+    	// UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
         launch(args);
+        HibernateUtils.getSessionFactory().close();
     }
 }

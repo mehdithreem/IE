@@ -1,15 +1,18 @@
 package ir.customs.domain;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("AGENT")  
 public class Agent extends User {
 	@Column(name = "ORG_NAME")
 	private final String organizationName;
 
-//	protected Agent() {
-//	}
+	protected Agent() {
+		organizationName = null;
+	}
 
 	public String getOrganizationName() {
 		return organizationName;

@@ -46,8 +46,9 @@ public class Declaration {
 	@OneToMany
 	private List<Permission> pendingPermission;
 	
-//	protected Declaration() {
-//	}
+	protected Declaration() {
+		declareDate = null;
+	}
 	
 	public Declaration(Merchant merchant, List<Good> goods,
 			String country, Transport tarsnportType) {

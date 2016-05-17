@@ -57,10 +57,11 @@ public class DeclarationManager {
 		Transport type = Transport.getFromPersianName(transportPersianName);
 		
 		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
-		owner.addDeclaration(fin);
-		mrep.update(owner);
+		//owner.addDeclaration(fin);
+		//mrep.update(owner);
 		
 		DeclarationRepository.getRepository().create(fin);
+		mrep = null;
 		
 		return fin.getId();
 	}

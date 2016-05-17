@@ -26,7 +26,7 @@ public class MerchantRepository {
 	
 	public Merchant read(String nid) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		Merchant mer = (Merchant) session.load(Merchant.class, nid);
+		Merchant mer = (Merchant) session.get(Merchant.class, nid);
 		session.close();
 		return mer;
 	}

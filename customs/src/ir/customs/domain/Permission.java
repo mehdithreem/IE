@@ -44,8 +44,9 @@ public class Permission {
 	@Column(name = "GOOD_COUNT")
 	private String goodCount;
 	
-//	protected Permission() {
-//	}
+	protected Permission() {
+		permitDate = null;
+	}
 
 	public Permission(Merchant owner, License license, Integer totalValue, String country,
 			Transport tarsnportType, String goodName, String goodProducer, String goodCount) {

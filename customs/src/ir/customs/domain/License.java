@@ -21,8 +21,11 @@ public class License {
 	@ManyToOne
 	private final Agent issuer;
 	
-//	protected License() {
-//	}
+	protected License() {
+		validityDuration = null;
+		title = null;
+		issuer = null;
+	}
 
 	public License(String title, Integer validityDuration, Agent issuer) {
 		this.title = title;

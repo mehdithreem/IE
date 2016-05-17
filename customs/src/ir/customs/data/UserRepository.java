@@ -25,8 +25,10 @@ public class UserRepository {
 	
 	public User read(String nid) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		User usr = (User) session.load(User.class, nid);
+		User usr;
+		usr = (User) session.get(User.class, nid);
 		session.close();
+		System.out.println("Loaded object: " + usr.getNationalID() + usr.getFirstName() + usr.getLastName() + usr.getPassword());
 		return usr;
 	}
 	
