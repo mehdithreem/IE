@@ -1,6 +1,5 @@
 package ir.customs.domain;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +8,6 @@ import ir.customs.data.DeclarationRepository;
 import ir.customs.data.MerchantRepository;
 
 public class DeclarationManager {
-	private Integer idGen = 100;
 	
 	private static DeclarationManager theManager = new DeclarationManager();
 	public static DeclarationManager getManager() {
@@ -48,26 +46,23 @@ public class DeclarationManager {
 		Merchant owner;
 		MerchantRepository mrep = MerchantRepository.getRepository();
 		
-		owner = mrep.get(merchantNID);
+		owner = mrep.read(merchantNID);
 		if (owner == null) {
 			owner = new Merchant(merchantNID, 
 					merchantFirstName == null ? "" : merchantFirstName,
 					merchantLastName == null ? "" : merchantLastName);
-			mrep.add(merchantNID, owner);
+			mrep.create(owner);
 		}
 		
 		Transport type = Transport.getFromPersianName(transportPersianName);
-		Integer id = generateID();
 		
-		Declaration fin = new Declaration(LocalDate.now(),id,owner,goodInsts,sourceCountry, type);
-		owner.addDeclaration(fin);
+		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
+		//owner.addDeclaration(fin);
+		//mrep.update(owner);
 		
-		DeclarationRepository.getRepository().add(id, fin);
+		DeclarationRepository.getRepository().create(fin);
+		mrep = null;
 		
-		return id;
-	}
-	
-	private Integer generateID() {
-		return idGen++;
+		return fin.getId();
 	}
 }

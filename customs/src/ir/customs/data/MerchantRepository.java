@@ -1,32 +1,49 @@
 package ir.customs.data;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import ir.customs.domain.Merchant;
+import ir.customs.domain.HibernateUtils;
 
 public class MerchantRepository {
-	private Map<String, Merchant> repo;
-	
 	private static MerchantRepository theRepository = new MerchantRepository();
 	public static MerchantRepository getRepository() {
 		return theRepository;
 	}
 	
 	private MerchantRepository() {
-		repo = new HashMap<String, Merchant>();
 	}
 	
-	public void add(String id, Merchant mer) {
-		repo.put(id, mer);
+	public void create(Merchant mer) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(mer);
+		tx.commit();
+		session.close();
 	}
 	
-	public Merchant get(String id) {
-		return repo.get(id);
+	public Merchant read(String nid) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Merchant mer = (Merchant) session.get(Merchant.class, nid);
+		session.close();
+		return mer;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Merchant> getAll() {
-		return (List<Merchant>) repo.values();
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		List<Merchant> list = session.createCriteria(Merchant.class).list();
+		session.close();
+		return list;
+	}
+	
+	public void update(Merchant mer){
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(mer);
+		tx.commit();
+		session.close();
 	}
 }
