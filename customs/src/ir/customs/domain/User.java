@@ -2,6 +2,8 @@ package ir.customs.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -11,17 +13,23 @@ import javax.persistence.OneToMany;
 public abstract class User {
 	@Id
 	@GeneratedValue
+	@Column( name = "NID")
 	private final String nationalID;
+	
+	@Column( name = "PWD")
 	private String password;
-
+	
+	@Column( name = "FIRST_NAME")
 	private String firstName;
+	
+	@Column( name = "LAST_NAME")
 	private String lastName;
 	
 	@OneToMany
 	protected Map<Access, Boolean> access;
 
-	protected User() {
-	}
+//	protected User() {
+//	}
 
 	public User(String nationalID, String password, String firstName, String lastName) {
 		this.password = password;
