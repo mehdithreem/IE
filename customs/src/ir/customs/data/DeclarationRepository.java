@@ -1,32 +1,41 @@
 package ir.customs.data;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import ir.customs.domain.Declaration;
+import ir.customs.domain.HibernateUtils;
 
 public class DeclarationRepository {
-	private Map<Integer, Declaration> repo;
-	
 	private static DeclarationRepository theRepository = new DeclarationRepository();
 	public static DeclarationRepository getRepository() {
 		return theRepository;
 	}
 	
 	private DeclarationRepository() {
-		repo = new HashMap<Integer, Declaration>();
 	}
 	
-	public void add(Integer id, Declaration dec) {
-		repo.put(id, dec);
+	public void create(Declaration dec) {
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(dec);
+		tx.commit();
+		session.close();
 	}
 	
 	public Declaration get(Integer id) {
-		return repo.get(id);
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Declaration dec = (Declaration) session.load(Declaration.class, id);
+		session.close();
+		return dec;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Declaration> getAll() {
-		return (List<Declaration>) repo.values();
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		List<Declaration> list = session.createCriteria(Declaration.class).list();
+		session.close();
+		return list;
 	}
 }

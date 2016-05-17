@@ -49,15 +49,10 @@ public class Declaration {
 	
 //	protected Declaration() {
 //	}
-
-	public Declaration(Integer newID, Merchant merchant) {
-		this.declareDate = LocalDate.now();
-		this.id = newID;
-	}
 	
-	public Declaration(LocalDate declareDate, Merchant merchant, List<Good> goods,
+	public Declaration(Merchant merchant, List<Good> goods,
 			String country, Transport tarsnportType) {
-		this.declareDate = declareDate;
+		this.declareDate = LocalDate.now();;
 		this.currStatus = Status.PENDING;
 		this.merchant = merchant;
 		this.goods = goods;

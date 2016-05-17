@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Table(name = "MERCHANT")
 public class Merchant {
 	@Id
-	@GeneratedValue
 	@Column(name = "NID")
 	private final String nationalID;
 	
