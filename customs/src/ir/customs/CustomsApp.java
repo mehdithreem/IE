@@ -91,7 +91,7 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-    	UserRepository.getRepository().add("admin", new Admin("admin", "admin", "0", "Super", "Power"));
+    	UserRepository.getRepository().add("admin", new Admin("admin", "admin", "Super", "Power"));
         launch(args);
     }
 }

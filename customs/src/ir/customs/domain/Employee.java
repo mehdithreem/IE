@@ -2,8 +2,8 @@ package ir.customs.domain;
 
 public class Employee extends User {
 
-	public Employee(String username, String password, String nationalID, String firstName, String lastName) {
-		super(username, password, nationalID, firstName, lastName);
+	public Employee(String nationalID, String password, String firstName, String lastName) {
+		super(nationalID, password, firstName, lastName);
 		
 		super.access.replace(Access.CreateDeclration, true);
 		super.access.replace(Access.ViewDeclration, true);
