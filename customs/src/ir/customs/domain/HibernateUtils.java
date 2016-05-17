@@ -1,9 +1,7 @@
 package ir.customs.domain;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtils {
 
@@ -11,15 +9,21 @@ public class HibernateUtils {
 
     private static SessionFactory buildSessionFactory() {
         // A SessionFactory is set up once for an application!
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure("hibernate.cfg.xml") // configures settings from hibernate.cfg.xml
-                .build();
         try {
-            return new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        	return new Configuration()
+        				.addPackage("ir.customs.domain")
+        					.addAnnotatedClass(Admin.class)
+        					.addAnnotatedClass(Agent.class)
+        					.addAnnotatedClass(Declaration.class)
+        					.addAnnotatedClass(Good.class)
+        					.addAnnotatedClass(License.class)
+        					.addAnnotatedClass(Merchant.class)
+        					.addAnnotatedClass(Permission.class)
+        					.addAnnotatedClass(User.class)
+        				.addResource("hibernate.cfg.xml")
+        				.configure()
+        				.buildSessionFactory();
         } catch (Exception ex) {
-            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-            // so destroy it manually.
-            StandardServiceRegistryBuilder.destroy(registry);
             throw new ExceptionInInitializerError("Unable to start hibernate " + ex);
         }
     }
