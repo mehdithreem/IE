@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +22,7 @@ public class Merchant {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@OneToMany(mappedBy = "MERCHANT")
+	@OneToMany(mappedBy = "merchant")
 	private List<Declaration> declarations;
 	
 //	protected Merchant() {

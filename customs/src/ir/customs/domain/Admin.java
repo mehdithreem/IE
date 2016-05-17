@@ -1,5 +1,10 @@
 package ir.customs.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="ADMIN")
 public class Admin extends User {
 
 	public Admin(String nationalID, String password, String firstName, String lastName) {
