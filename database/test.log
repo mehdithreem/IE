@@ -120,3 +120,9 @@ INSERT INTO DECLARATION_GOODS VALUES(8,6000,'AK47','kalashnikov',150,5)
 ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
 COMMIT
 DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
+alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
+alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
+alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
+DISCONNECT
