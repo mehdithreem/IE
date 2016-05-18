@@ -2,9 +2,17 @@ package ir.customs.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Embeddable
 public class Good {
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	private Integer id;
+	
 	@Column(name = "NAME")
 	private final String name;
 	

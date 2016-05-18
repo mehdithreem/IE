@@ -40,6 +40,10 @@ public class License {
 	public Integer getValidityDuration() {
 		return validityDuration;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
 
 	public Agent getIssuer() {
 		return issuer;
