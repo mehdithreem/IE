@@ -18,7 +18,7 @@ public class Agent extends User {
 		return organizationName;
 	}
 
-	public Agent(String username, String password, String nationalID,
+	public Agent(String nationalID, String password,
 			String firstName, String lastName, String organizationName) {
 		super(nationalID, password, firstName, lastName);
 		this.organizationName = organizationName;
