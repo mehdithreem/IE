@@ -11,6 +11,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#logout" text="خروج" />
             <Button mnemonicParsing="false" onAction="#showCreateDeclrationFrom" text="ایجاد اظهارنامه" />
+            <Button layoutX="349.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreatePermissionFrom" text="ایجاد  مجوز" />
             <Button mnemonicParsing="false" onAction="#showHome" text="خانه" />
          </children>
          <padding>

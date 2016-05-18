@@ -40,6 +40,24 @@ public class MainWindowController {
         }
     }
     
+    public void showCreatePermissionFrom() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(CustomsApp.class.getResource("presentation/CreatePermissionForm.fxml"));
+            VBox newDecForm = (VBox) loader.load();
+            
+            CreatePermissionFormController newCtrl = loader.getController();
+            newCtrl.setCustomsApp(customsApp);
+            newCtrl.setMainWindowController(this);
+
+            // Set person overview into the center of root layout.
+            customsApp.getRootLayout().setCenter(newDecForm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void showHome() {
     	try {
             // Load person overview.

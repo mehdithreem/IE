@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
+import ir.customs.domain.Agent;
 import ir.customs.domain.HibernateUtils;
 import ir.customs.presentation.LoginWindowController;
 import ir.customs.presentation.MainWindowController;
@@ -92,7 +93,12 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-    	// UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
+//    	 UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
+//    	UserRepository.getRepository()
+//    		.create(new Agent("123", "123", "Agent", "Agentian", "AB"));
+//    	Agent newAge = (Agent) UserRepository.getRepository().read("admin");
+    	
+//    	System.out.println("AGENT: " + newAge.getNationalID() + " " + newAge.getOrganizationName());
         launch(args);
         HibernateUtils.getSessionFactory().close();
     }

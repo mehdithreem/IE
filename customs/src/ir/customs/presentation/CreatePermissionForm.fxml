@@ -12,12 +12,34 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.customs.presentation.CreateDeclrationFormController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.customs.presentation.CreatePermissionFormController">
    <children>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="500.0" prefWidth="600.0" vbarPolicy="ALWAYS" VBox.vgrow="NEVER">
          <content>
             <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-fit-to-width: true;">
                <children>
+                  <TitledPane collapsible="false" layoutX="10.0" layoutY="10.0" text="نوع مجوز">
+                     <content>
+                        <GridPane fx:id="LicenseBox" alignment="CENTER_RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="نوع مجوز" />
+                              <Label text="نهاد صادر کننده مجوز" GridPane.rowIndex="1" />
+                              <TextField fx:id="LicenseIssuer" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
                   <TitledPane collapsible="false" text="اطلاعات تاجر">
                      <content>
                         <GridPane alignment="CENTER_RIGHT">
@@ -68,13 +90,35 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane collapsible="false" contentDisplay="RIGHT" layoutX="10.0" layoutY="148.0" text="کالاها">
+                  <TitledPane collapsible="false" layoutX="10.0" layoutY="256.0" text="اطلاعات کالا">
                      <content>
-                        <VBox fx:id="newGoodsVBox" spacing="10.0" />
+                        <GridPane alignment="CENTER_RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="ارزش کل کالا" />
+                              <Label text="نام کالا" GridPane.rowIndex="1" />
+                              <Label text="شرکت سازنده" GridPane.rowIndex="2" />
+                              <Label text="تعداد" GridPane.rowIndex="3" />
+                              <TextField fx:id="GoodsTotalValue" GridPane.columnIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField fx:id="GoodName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="GoodProducer" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="GoodCount" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
                      </content>
-                     <graphic>
-                        <Button mnemonicParsing="false" onAction="#addGoodItem" text="اضافه کردن کالا" />
-                     </graphic>
                   </TitledPane>
                </children>
             </VBox>
@@ -91,7 +135,7 @@
       </ScrollPane>
       <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#submitForm" text="ثبت اظهارنامه" />
+          <Button mnemonicParsing="false" onAction="#submitForm" text="ثبت مجوز" />
         </buttons>
       </ButtonBar>
    </children>

@@ -2,19 +2,24 @@
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 COMMIT
 /*C2*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
 create table DECLARATION (ID integer not null, COUNTRY varchar(255), STATUS varchar(255), TIME date, TRANSPORT_TYPE varchar(255), merchant_NID varchar(255), primary key (ID))
-create table Declaration_goods (Declaration_ID integer not null, CNT integer, NAME varchar(255), PRODUCER varchar(255), UNIT_PRICE integer, WEIGHT integer)
+create table DECLARATION_GOODS (Declaration_ID integer not null, goods_ID integer not null)
 create table DECLARATION_Permission (Declaration_ID integer not null, pendingPermission_ID integer not null, issuedPermission_ID integer not null)
+create table GOODS (ID integer not null, CNT integer, NAME varchar(255), PRODUCER varchar(255), UNIT_PRICE integer, WEIGHT integer, primary key (ID))
 create table License (id integer not null, TITLE varchar(255), VALID_DURATION integer, issuer_NID varchar(255), primary key (id))
 create table MERCHANT (NID varchar(255) not null, FIRST_NAME varchar(255), LAST_NAME varchar(255), primary key (NID))
 create table Permission (ID integer not null, COUNTRY varchar(255), GOOD_COUNT varchar(255), GOOD_NAME varchar(255), GOOD_PRODUCER varchar(255), PERMIT_DATE date, TRANSPORT_TYPE varchar(255), TOTAL_VALUE integer, license_id integer, owner_NID varchar(255), primary key (ID))
 create table USER (type varchar(31) not null, NID varchar(255) not null, FIRST_NAME varchar(255), LAST_NAME varchar(255), PASSWORD varchar(255), ORG_NAME varchar(255), primary key (NID))
 create table User_access (User_NID varchar(255) not null, ACC_BOOLEAN boolean, ACCESS integer not null, primary key (User_NID, ACCESS))
+alter table DECLARATION_GOODS add constraint UK_masmp3bm3tnwnhc51763s3ix7 unique (goods_ID)
 alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
 alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
 create sequence hibernate_sequence start with 1 increment by 1
 alter table DECLARATION add constraint FK7bhbf42gqwda2pcsteoibqmn2 foreign key (merchant_NID) references MERCHANT
-alter table Declaration_goods add constraint FK4pw8aoewsjvml80tos0ifa8lc foreign key (Declaration_ID) references DECLARATION
+alter table DECLARATION_GOODS add constraint FK8f85x61inj5b42jyiqdn0nyda foreign key (goods_ID) references GOODS
+alter table DECLARATION_GOODS add constraint FKdvctoxpw8abkojyy01646scbs foreign key (Declaration_ID) references DECLARATION
 alter table DECLARATION_Permission add constraint FKh3wxt89bqqnosqvx5knkblpf9 foreign key (pendingPermission_ID) references Permission
 alter table DECLARATION_Permission add constraint FKj1h479copoc4eumhuxg06dbik foreign key (Declaration_ID) references DECLARATION
 alter table DECLARATION_Permission add constraint FKftvdjm744uifm57vop92vvapn foreign key (issuedPermission_ID) references Permission
@@ -36,91 +41,40 @@ INSERT INTO USER_ACCESS VALUES('admin',FALSE,5)
 INSERT INTO USER_ACCESS VALUES('admin',FALSE,8)
 INSERT INTO USER_ACCESS VALUES('admin',TRUE,9)
 COMMIT
-DISCONNECT
-/*C4*/SET SCHEMA PUBLIC
-alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
-alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
-alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
-alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
-INSERT INTO MERCHANT VALUES('0910120005','\u0645\u062d\u0645\u062f\u0645\u0647\u062f\u06cc','\u0645\u0647\u062f\u06cc\u200c\u0632\u0627\u062f\u0647')
+INSERT INTO USER VALUES('AGENT','123','Agent','Agentian','123','AB')
+INSERT INTO USER_ACCESS VALUES('123',FALSE,10)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,11)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,1)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,2)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,0)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,6)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,7)
+INSERT INTO USER_ACCESS VALUES('123',TRUE,3)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,4)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,5)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,8)
+INSERT INTO USER_ACCESS VALUES('123',FALSE,9)
 COMMIT
 DISCONNECT
 /*C5*/SET SCHEMA PUBLIC
+alter table DECLARATION_GOODS drop constraint UK_masmp3bm3tnwnhc51763s3ix7
+alter table DECLARATION_GOODS add constraint UK_masmp3bm3tnwnhc51763s3ix7 unique (goods_ID)
 alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
 alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
 alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
 alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
 DISCONNECT
 /*C6*/SET SCHEMA PUBLIC
+alter table DECLARATION_GOODS drop constraint UK_masmp3bm3tnwnhc51763s3ix7
+alter table DECLARATION_GOODS add constraint UK_masmp3bm3tnwnhc51763s3ix7 unique (goods_ID)
 alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
 alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
 alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
 alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
-INSERT INTO DECLARATION VALUES(2,'\u0686\u06cc\u0646','PENDING','2016-05-18','Maritime','0910120005')
-DELETE FROM MERCHANT WHERE NID='0910120005'
-INSERT INTO MERCHANT VALUES('0910120005','\u0645\u062d\u0645\u062f\u0645\u0647\u062f\u06cc','\u0645\u0647\u062f\u06cc\u200c\u0632\u0627\u062f\u0647')
-INSERT INTO DECLARATION_GOODS VALUES(2,2500,'\u062f\u0645\u067e\u0627\u06cc\u06cc \u0627\u0628\u0631\u06cc','\u0627\u0628\u0631\u06cc \u0633\u0627\u0632\u0627\u0646 \u0634\u0631\u0642 \u0622\u0633\u06cc\u0627',3,10)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-INSERT INTO DECLARATION VALUES(3,'\u0686\u06cc\u0646','PENDING','2016-05-18','Maritime','0910120005')
-DELETE FROM DECLARATION_GOODS WHERE DECLARATION_ID=2 AND CNT=2500 AND NAME='\u062f\u0645\u067e\u0627\u06cc\u06cc \u0627\u0628\u0631\u06cc' AND PRODUCER='\u0627\u0628\u0631\u06cc \u0633\u0627\u0632\u0627\u0646 \u0634\u0631\u0642 \u0622\u0633\u06cc\u0627' AND UNIT_PRICE=3 AND WEIGHT=10
-INSERT INTO DECLARATION_GOODS VALUES(3,2500,'\u062f\u0645\u067e\u0627\u06cc\u06cc \u0627\u0628\u0631\u06cc','\u0627\u0628\u0631\u06cc \u0633\u0627\u0632\u0627\u0646 \u0634\u0631\u0642 \u0622\u0633\u06cc\u0627',3,10)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-INSERT INTO DECLARATION VALUES(4,'\u0698\u0627\u067e\u0646','PENDING','2016-05-18','Aerial','0910120005')
-DELETE FROM MERCHANT WHERE NID='0910120005'
-INSERT INTO MERCHANT VALUES('0910120005','\u0645\u062d\u0645\u062f\u0645\u0647\u062f\u06cc','\u0645\u0647\u062f\u06cc\u200c\u0632\u0627\u062f\u0647')
-DELETE FROM DECLARATION WHERE ID=2
-INSERT INTO DECLARATION VALUES(2,'\u0686\u06cc\u0646','PENDING','2016-05-18','Maritime','0910120005')
-DELETE FROM DECLARATION WHERE ID=3
-INSERT INTO DECLARATION VALUES(3,'\u0686\u06cc\u0646','PENDING','2016-05-18','Maritime','0910120005')
-INSERT INTO DECLARATION_GOODS VALUES(4,10,'\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646 LCD','\u0633\u0648\u0646\u06cc',4500,20)
-INSERT INTO DECLARATION_GOODS VALUES(4,10,'\u0633\u06cc\u0646\u0645\u0627\u06cc \u062e\u0627\u0646\u06af\u06cc','\u0633\u0648\u0646\u06cc',1500,25)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-INSERT INTO DECLARATION VALUES(5,'\u0698\u0627\u067e\u0646','PENDING','2016-05-18','Aerial','0910120005')
-DELETE FROM DECLARATION_GOODS WHERE DECLARATION_ID=4 AND CNT=10 AND NAME='\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646 LCD' AND PRODUCER='\u0633\u0648\u0646\u06cc' AND UNIT_PRICE=4500 AND WEIGHT=20
-DELETE FROM DECLARATION_GOODS WHERE DECLARATION_ID=4 AND CNT=10 AND NAME='\u0633\u06cc\u0646\u0645\u0627\u06cc \u062e\u0627\u0646\u06af\u06cc' AND PRODUCER='\u0633\u0648\u0646\u06cc' AND UNIT_PRICE=1500 AND WEIGHT=25
-INSERT INTO DECLARATION_GOODS VALUES(5,10,'\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646 LCD','\u0633\u0648\u0646\u06cc',4500,20)
-INSERT INTO DECLARATION_GOODS VALUES(5,10,'\u0633\u06cc\u0646\u0645\u0627\u06cc \u062e\u0627\u0646\u06af\u06cc','\u0633\u0648\u0646\u06cc',1500,25)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
-COMMIT
 DISCONNECT
 /*C7*/SET SCHEMA PUBLIC
-alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
-alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
-alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
-alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
-INSERT INTO DECLARATION VALUES(6,'\u062a\u0631\u06a9\u06cc\u0647','PENDING','2016-05-18','Land','0910120005')
-INSERT INTO DECLARATION_GOODS VALUES(6,50,'\u067e\u0627\u0631\u0686\u0647\u200c\u06cc \u0627\u0628\u0631\u06cc\u0634\u0645','\u0628\u0627\u0641\u0646\u062f\u06af\u0627\u0646 \u0641\u0644\u0627\u0646',100,300)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
-COMMIT
-DISCONNECT
-/*C8*/SET SCHEMA PUBLIC
-alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
-alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
-alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
-alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
-INSERT INTO MERCHANT VALUES('0017003','\u0646\u0647\u0627\u0644','\u0645\u06cc\u0631\u0632\u0627\u06cc\u06cc')
-COMMIT
-INSERT INTO DECLARATION VALUES(7,'\u062a\u0627\u062c\u06cc\u06a9\u0633\u062a\u0627\u0646','PENDING','2016-05-18','Aerial','0017003')
-INSERT INTO DECLARATION_GOODS VALUES(7,13,'\u062e\u0627\u0631\u067e\u0634\u062a','\u0628\u0627\u063a \u0648\u062d\u0634',40000,200)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
-COMMIT
-DISCONNECT
-/*C9*/SET SCHEMA PUBLIC
-alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
-alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
-alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om
-alter table DECLARATION_Permission add constraint UK_s6eglgbdi273lb6a4igfoh3om unique (issuedPermission_ID)
-INSERT INTO MERCHANT VALUES('888888','\u0633\u062c\u0627\u062f','\u0645\u0648\u062d\u062f\u06cc')
-COMMIT
-INSERT INTO DECLARATION VALUES(8,'\u0639\u0631\u0627\u0642','PENDING','2016-05-18','Land','888888')
-INSERT INTO DECLARATION_GOODS VALUES(8,6000,'AK47','kalashnikov',150,5)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
-COMMIT
-DISCONNECT
-/*C10*/SET SCHEMA PUBLIC
+alter table DECLARATION_GOODS drop constraint UK_masmp3bm3tnwnhc51763s3ix7
+alter table DECLARATION_GOODS add constraint UK_masmp3bm3tnwnhc51763s3ix7 unique (goods_ID)
 alter table DECLARATION_Permission drop constraint UK_7uckyt8etmnnv82hm7ug9yq6h
 alter table DECLARATION_Permission add constraint UK_7uckyt8etmnnv82hm7ug9yq6h unique (pendingPermission_ID)
 alter table DECLARATION_Permission drop constraint UK_s6eglgbdi273lb6a4igfoh3om

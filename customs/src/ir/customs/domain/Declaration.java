@@ -31,7 +31,7 @@ public class Declaration {
 	@ManyToOne
 	private Merchant merchant;
 	
-	@ElementCollection
+	@OneToMany
 	private List<Good> goods;
 	
 	@Column(name = "COUNTRY")
