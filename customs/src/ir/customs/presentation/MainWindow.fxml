@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
@@ -10,7 +12,12 @@
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#logout" text="خروج" />
-            <Button mnemonicParsing="false" onAction="#showCreateDeclrationFrom" text="ایجاد اظهارنامه" />
+            <MenuButton mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="اظهارنامه">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showFindDeclaration" text="پیگیری اظهارنامه" />
+                <MenuItem mnemonicParsing="false" onAction="#showCreateDeclrationFrom" text="ایجاد اظهارنامه" />
+              </items>
+            </MenuButton>
             <Button layoutX="349.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreatePermissionFrom" text="ایجاد  مجوز" />
             <Button mnemonicParsing="false" onAction="#showHome" text="خانه" />
          </children>

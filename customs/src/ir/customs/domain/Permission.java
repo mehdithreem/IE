@@ -1,9 +1,6 @@
 package ir.customs.domain;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -12,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import javafx.util.Pair;
 
 @Entity
 public class Permission {
@@ -63,12 +62,8 @@ public class Permission {
 		this.goodCount = goodCount;
 	}
 	
-	public Map<Integer, String> getInfoMap(){
-		Map<Integer, String> retMap = new HashMap<Integer,String>();
-		
-		retMap.put(id, license.getTitle());
-		
-		return retMap;
+	public Pair<Integer, String> getIdLicenseTitlePair(){	
+		return new Pair<Integer, String>(id, license.getTitle());
 	}
 	
 	public LocalDate getPermitDate() {

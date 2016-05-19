@@ -28,7 +28,7 @@ public class Declaration {
 	@ManyToOne
 	private Merchant merchant;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Good> goods;
 	
 	@Column(name = "COUNTRY")
@@ -38,9 +38,9 @@ public class Declaration {
 	@Column(name = "TRANSPORT_TYPE")
 	private Transport tarsnportType;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<License> requiredLicenses;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Permission> issuedPermissions;
 	
 	protected Declaration() {
@@ -65,8 +65,11 @@ public class Declaration {
 		retMap.put("declareDate", declareDate.toString());
 		retMap.put("id", String.valueOf(id));
 		retMap.put("currStatus", currStatus.getPersianName());
-		retMap.put("merchant", merchant.getNationalID());
+		retMap.put("merchantID", merchant.getNationalID());
+		retMap.put("merchantFirstName", merchant.getFirstName());
+		retMap.put("merchantLastName", merchant.getLastName());
 		retMap.put("country", country);
+		retMap.put("transportType", tarsnportType.getPersianName());
 		
 		return retMap;
 	}

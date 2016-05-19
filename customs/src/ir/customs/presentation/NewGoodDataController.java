@@ -66,6 +66,22 @@ public class NewGoodDataController {
 		return errorMessage;
 	}
 	
+	public void DisableFields() {
+		goodName.setDisable(true);
+		goodProducer.setDisable(true);
+		goodWeight.setDisable(true);
+		goodCount.setDisable(true);
+		goodUnitPrice.setDisable(true);
+	}
+	
+	public void setData(Map<String,String> data) {
+		goodName.setText(data.get("goodName"));
+		goodProducer.setText(data.get("goodProducer"));
+		goodWeight.setText(data.get("goodWeight"));
+		goodCount.setText(data.get("goodCount"));
+		goodUnitPrice.setText(data.get("goodUnitPrice"));
+	}
+	
 	public Map<String, String> getData() {
 		Map<String, String> retmap = new HashMap<String, String>();
 		

@@ -1,6 +1,5 @@
 package ir.customs.domain;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import java.util.Set;
 import ir.customs.data.DeclarationRepository;
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
+import javafx.util.Pair;
 
 public class DeclarationManager {
 	
@@ -73,27 +73,25 @@ public class DeclarationManager {
 			Integer id, Map<String,String> data,
 			List<Map<String,String>> goodsData,
 			List<String> requiredLicensesTitles,
-			List<Map<Integer, String>> issuedPermission) {
+			Map<Integer, String> issuedPermission) {
 		
 		Declaration dec = DeclarationRepository.getRepository().read(id);
 		if(dec == null)
 			return -1;
 		
-		data = new HashMap<String, String>(dec.getInfoMap());
+		data.putAll(dec.getInfoMap());
 		
-		Set<Good> goods = dec.getGoods();
-		for(Good g : goods){
+		for(Good g : dec.getGoods()){
 			goodsData.add(g.getInfoMap());
 		}
 		
-		List<License> ll= dec.getRequiredLicenses();
-		for(License l : ll){
+		for(License l : dec.getRequiredLicenses()){
 			requiredLicensesTitles.add(l.getTitle());
 		}
 		
-		List<Permission> lp = dec.getPendingPermission();
-		for(Permission p : lp){
-			issuedPermission.add(p.getInfoMap());
+		for(Permission p : dec.getPendingPermission()){
+			Pair<Integer, String> pr = p.getIdLicenseTitlePair();
+			issuedPermission.put(pr.getKey(), pr.getValue());
 		}
 		
 		return 0;
