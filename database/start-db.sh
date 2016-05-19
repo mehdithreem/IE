@@ -1,1 +1,1 @@
-java -cp hsqldb.jar org.hsqldb.server.Server
+java -cp hsqldb.jar org.hsqldb.server.Server --database.0 file:dbfiles/customsdb --dbname.0 customsdb

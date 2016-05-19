@@ -42,14 +42,14 @@ public class Permission {
 	@Column(name = "GOOD_PRODUCER")
 	private String goodProducer;
 	@Column(name = "GOOD_COUNT")
-	private String goodCount;
+	private Integer goodCount;
 	
 	protected Permission() {
 		permitDate = null;
 	}
 
 	public Permission(Merchant owner, License license, Integer totalValue, String country,
-			Transport tarsnportType, String goodName, String goodProducer, String goodCount) {
+			Transport tarsnportType, String goodName, String goodProducer, Integer goodCount) {
 		this.permitDate = LocalDate.now();
 		this.owner = owner;
 		this.license = license;
@@ -97,7 +97,7 @@ public class Permission {
 		return goodProducer;
 	}
 
-	public String getGoodCount() {
+	public Integer getGoodCount() {
 		return goodCount;
 	}
 	

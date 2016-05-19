@@ -6,6 +6,7 @@ import java.util.Map;
 
 import ir.customs.CustomsApp;
 import ir.customs.domain.LicenseManager;
+import ir.customs.domain.PermissionManager;
 import ir.customs.domain.Transport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,9 +72,7 @@ public class CreatePermissionFormController {
 			tmpButt.setToggleGroup(group);
 			transportBox.getChildren().add(tmpButt);
 			radioTransport.add(tmpButt);
-		}
-		((RadioButton) transportBox.getChildren().get(0)).setSelected(true);
-		
+		}		
     }
 	
 	public void setCustomsApp(CustomsApp app) {
@@ -93,10 +92,6 @@ public class CreatePermissionFormController {
 		if (LicenseName.getValue() == null || LicenseName.getValue().length() == 0) {
 			errorMessage += "نوع مجوز مشخص نشده است.\n";
 		}
-		if (srcCountry.getText() == null || srcCountry.getText().length() == 0) {
-			errorMessage += "اطلاعات مربوط به کشور مبدا معتبر نیست.\n";
-		}
-
 		
 		if (errorMessage.length() == 0) {
 			return true;
@@ -114,62 +109,59 @@ public class CreatePermissionFormController {
 	}
 	
 	public void submitForm() {
+		if(!validateForm())
+		return;
 		
-	}
+		String selectedRadio = null;
+		for(RadioButton r : this.radioTransport) {
+			if (r.isSelected()) {
+				selectedRadio = r.getText();
+				break;
+			}
+		}
+		
+		Integer id = -1;
+		
+		try {
+			id = PermissionManager.getManager().createNew(
+						merNID.getText(),
+						merFirstName.getText(),
+						merLastName.getText(),
+						licensesMap.get(LicenseName.getValue()),
+						GoodTotalValue.getText() == null || GoodTotalValue.getText().equals("") ? null : Integer.valueOf(GoodTotalValue.getText()),
+						srcCountry.getText(),
+						selectedRadio,
+						GoodName.getText(),
+						GoodProducer.getText(),
+						GoodCount.getText() == null || GoodCount.getText().equals("") ? null : Integer.valueOf(GoodCount.getText())
+				);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (id < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(customsApp.getPrimaryStage());
+			alert.setTitle("خطا در مقادیر");
+	  		alert.setHeaderText("لطفا مقادیر وارده را دوباره بررسی کنید..");
+	  		
+	  		alert.showAndWait();
 	
-//	public void submitForm() {
-//		if(!validateForm())
-//			return;
-//		
-//		List<Map<String, String>> goodStr = new ArrayList<Map<String, String>>();
-//		for(NewGoodDataController ctrl : goodCtrl){
-//			goodStr.add(ctrl.getData());
-//		}
-//		String selectedRadio = "";
-//		for(RadioButton r : this.radioTransport) {
-//			if (r.isSelected()) {
-//				selectedRadio = r.getText();
-//				break;
-//			}
-//		}
-//		
-//		Integer id = -1;
-//		
-//		try {
-//			id = DeclarationManager.getManager().submitNew(
-//				merNID.getText(),
-//				merFirstName.getText(),
-//				merLastName.getText(),
-//				srcCountry.getText(),
-//				selectedRadio,
-//				goodStr);
-//		} catch (ArgumentNotFoundException e) {
-//			System.out.println("ERROR: " + e.getArgumentName());
-//			e.printStackTrace();
-//		}
-//		
-//		if (id < 0) {
-//			Alert alert = new Alert(AlertType.ERROR);
-//			alert.initOwner(customsApp.getPrimaryStage());
-//			alert.setTitle("خطا در مقادیر");
-//      		alert.setHeaderText("لطفا مقادیر وارده را دوباره بررسی کنید..");
-//      		
-//      		alert.showAndWait();
-//
-//      		return;
-//		} else {
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//			alert.initOwner(customsApp.getPrimaryStage());
-//			alert.setTitle("موفق");
-//      		alert.setHeaderText("کد رهگیری: " + String.valueOf(id));
-//      		alert.setContentText("لطفا کد بالا را برای پیگیری‌های بعدی ثبت نمایید.");
-//      		
-//      		alert.showAndWait();
-//      		
-//      		mainWin.showHome();
-//
-//      		return;
-//		}
-//	}
+	  		return;
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initOwner(customsApp.getPrimaryStage());
+			alert.setTitle("موفق");
+	  		alert.setHeaderText("کد رهگیری: " + String.valueOf(id));
+	  		alert.setContentText("لطفا کد بالا را برای پیگیری‌های بعدی ثبت نمایید.");
+	  		
+	  		alert.showAndWait();
+	  		
+	  		mainWin.showHome();
+	
+	  		return;
+		}		
+			
+	}
 
 }

@@ -12,7 +12,7 @@ public class License {
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(name = "TITLE")
+	@Column(name = "TITLE",unique=true)
 	private final String title;
 	
 	@Column(name = "VALID_DURATION")

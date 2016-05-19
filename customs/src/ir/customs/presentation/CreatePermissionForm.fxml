@@ -108,7 +108,7 @@
                               <Label text="نام کالا" GridPane.rowIndex="1" />
                               <Label text="شرکت سازنده" GridPane.rowIndex="2" />
                               <Label text="تعداد" GridPane.rowIndex="3" />
-                              <TextField fx:id="GoodsTotalValue" GridPane.columnIndex="1">
+                              <TextField fx:id="GoodTotalValue" GridPane.columnIndex="1">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>

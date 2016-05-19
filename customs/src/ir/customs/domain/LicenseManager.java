@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.data.LicenseRepository;
-import ir.customs.data.PermissionRepository;
 import ir.customs.data.UserRepository;
 
 public class LicenseManager {
@@ -18,7 +17,7 @@ public class LicenseManager {
 			String title,
 			Integer validityDuration,
 			String agentID
-			) throws Exception{
+			) throws Exception {
 
 		Agent agent;
 		UserRepository urep = UserRepository.getRepository();

@@ -42,9 +42,9 @@ public class Declaration {
 	private Transport tarsnportType;
 	
 	@OneToMany
-	private List<Permission> issuedPermission;
+	private List<License> requiredLicenses;
 	@OneToMany
-	private List<Permission> pendingPermission;
+	private List<Permission> issuedPermissions;
 	
 	protected Declaration() {
 		declareDate = null;
@@ -58,8 +58,8 @@ public class Declaration {
 		this.goods = goods;
 		this.country = country;
 		this.tarsnportType = tarsnportType;
-		this.issuedPermission = new ArrayList<Permission>();
-		this.pendingPermission = new ArrayList<Permission>();
+		this.requiredLicenses = new ArrayList<License>();
+		this.issuedPermissions = new ArrayList<Permission>();
 	}
 
 	public void addGood(Good newGood) {
@@ -83,11 +83,11 @@ public class Declaration {
 	}
 
 	public List<Permission> getPendingPermission() {
-		return pendingPermission;
+		return issuedPermissions;
 	}
 
 	public void setPendingPermission(List<Permission> pendingPermission) {
-		this.pendingPermission = pendingPermission;
+		this.issuedPermissions = pendingPermission;
 	}
 
 	public LocalDate getDeclareDate() {
@@ -110,8 +110,8 @@ public class Declaration {
 		return tarsnportType;
 	}
 
-	public List<Permission> getIssuedPermission() {
-		return issuedPermission;
+	public List<License> getIssuedPermission() {
+		return requiredLicenses;
 	}
 	
 	

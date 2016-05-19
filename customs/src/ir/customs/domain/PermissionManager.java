@@ -1,6 +1,5 @@
 package ir.customs.domain;
 
-import ir.customs.data.DeclarationRepository;
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
 import ir.customs.data.PermissionRepository;
@@ -11,7 +10,7 @@ public class PermissionManager {
 		return theManager;
 	}
 	
-	public Integer createPermission(
+	public Integer createNew(
 			String merNID,
 			String merFirstName,
 			String merLastName,
@@ -21,7 +20,7 @@ public class PermissionManager {
 			String transportPersianName,
 			String goodName,
 			String goodProducer,
-			String goodCount
+			Integer goodCount
 			) {
 		
 		Merchant owner;
@@ -29,7 +28,7 @@ public class PermissionManager {
 		
 		owner = mrep.read(merNID);
 		if (owner == null) {
-			owner = new Merchant(merNID, 
+			owner = new Merchant(merNID,
 					merFirstName == null ? "" : merFirstName,
 					merLastName == null ? "" : merLastName);
 			mrep.create(owner);
@@ -41,6 +40,8 @@ public class PermissionManager {
 		LicenseRepository lrep = LicenseRepository.getRepository();
 		
 		license =lrep.read(licenseID);
+		if (license == null)
+			return -1;
 		
 		Permission prm = new Permission(owner, license, totalValue, country, 
 										type, goodName, goodProducer, goodCount);

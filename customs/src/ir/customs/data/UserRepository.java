@@ -28,7 +28,6 @@ public class UserRepository {
 		User usr;
 		usr = (User) session.get(User.class, nid);
 		session.close();
-		System.out.println("Loaded object: " + usr.getNationalID() + usr.getFirstName() + usr.getLastName() + usr.getPassword());
 		return usr;
 	}
 	
