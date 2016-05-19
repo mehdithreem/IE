@@ -1,5 +1,6 @@
 package ir.customs.domain;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -73,16 +74,35 @@ public class DeclarationManager {
 			List<Map<String,String>> goodsData,
 			List<String> requiredLicensesTitles,
 			List<Map<Integer, String>> issuedPermission) {
-		// returns -1 if declaration not found
-		// data: common data
-		// goodsData: list of goods
-		// requiredLicensesTitles
-		// issuedPermission: permission id and corresponding license title
+		
+		Declaration dec = DeclarationRepository.getRepository().read(id);
+		if(dec == null)
+			return -1;
+		
+		data = new HashMap<String, String>(dec.getInfoMap());
+		
+		Set<Good> goods = dec.getGoods();
+		for(Good g : goods){
+			goodsData.add(g.getInfoMap());
+		}
+		
+		List<License> ll= dec.getRequiredLicenses();
+		for(License l : ll){
+			requiredLicensesTitles.add(l.getTitle());
+		}
+		
+		List<Permission> lp = dec.getPendingPermission();
+		for(Permission p : lp){
+			issuedPermission.add(p.getInfoMap());
+		}
 		
 		return 0;
 	}
 	
 	public Integer issuePermission(Integer decID, Integer permID) {
+		Declaration dec = DeclarationRepository.getRepository().read(id);
+		if(dec == null)
+			return -1;
 		return 0;
 	}
 }

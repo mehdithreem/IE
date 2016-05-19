@@ -2,7 +2,9 @@ package ir.customs.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -57,6 +59,18 @@ public class Declaration {
 		this.issuedPermissions = new ArrayList<Permission>();
 	}
 
+	public Map<String, String> getInfoMap(){
+		Map<String,String> retMap = new HashMap<String,String>();
+		
+		retMap.put("declareDate", declareDate.toString());
+		retMap.put("id", String.valueOf(id));
+		retMap.put("currStatus", currStatus.getPersianName());
+		retMap.put("merchant", merchant.getNationalID());
+		retMap.put("country", country);
+		
+		return retMap;
+	}
+	
 	public void addGood(Good newGood) {
 		goods.add(newGood);
 	}

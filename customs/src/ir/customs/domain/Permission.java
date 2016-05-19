@@ -1,6 +1,8 @@
 package ir.customs.domain;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -60,7 +62,15 @@ public class Permission {
 		this.goodProducer = goodProducer;
 		this.goodCount = goodCount;
 	}
-
+	
+	public Map<Integer, String> getInfoMap(){
+		Map<Integer, String> retMap = new HashMap<Integer,String>();
+		
+		retMap.put(id, license.getTitle());
+		
+		return retMap;
+	}
+	
 	public LocalDate getPermitDate() {
 		return permitDate;
 	}
