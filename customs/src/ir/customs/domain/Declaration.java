@@ -3,14 +3,9 @@ package ir.customs.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "DECLARATION")
@@ -31,8 +26,8 @@ public class Declaration {
 	@ManyToOne
 	private Merchant merchant;
 	
-	@OneToMany
-	private List<Good> goods;
+	@ElementCollection
+	private Set<Good> goods;
 	
 	@Column(name = "COUNTRY")
 	private String country;
@@ -50,7 +45,7 @@ public class Declaration {
 		declareDate = null;
 	}
 	
-	public Declaration(Merchant merchant, List<Good> goods,
+	public Declaration(Merchant merchant, Set<Good> goods,
 			String country, Transport tarsnportType) {
 		this.declareDate = LocalDate.now();;
 		this.currStatus = Status.PENDING;
@@ -102,7 +97,7 @@ public class Declaration {
 		return merchant;
 	}
 
-	public List<Good> getGoods() {
+	public Set<Good> getGoods() {
 		return goods;
 	}
 
@@ -110,9 +105,12 @@ public class Declaration {
 		return tarsnportType;
 	}
 
-	public List<License> getIssuedPermission() {
+	public List<License> getRequiredLicenses() {
 		return requiredLicenses;
 	}
 	
+	public void addReuiredLicense(License l) {
+		requiredLicenses.add(l);
+	}
 	
 }

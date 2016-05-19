@@ -1,19 +1,10 @@
 package ir.customs.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "GOODS")
+@Embeddable
 public class Good {
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
-	private Integer id;
 	
 	@Column(name = "NAME")
 	private final String name;

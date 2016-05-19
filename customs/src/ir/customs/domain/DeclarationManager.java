@@ -1,10 +1,12 @@
 package ir.customs.domain;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ir.customs.data.DeclarationRepository;
+import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
 
 public class DeclarationManager {
@@ -23,7 +25,7 @@ public class DeclarationManager {
 			List<Map<String, String>> goods) 
 					throws ArgumentNotFoundException {
 		
-		List<Good> goodInsts = new ArrayList<Good>();
+		Set<Good> goodInsts = new HashSet<Good>();
 		
 		for(Map<String, String> gmap : goods) {
 			if(
@@ -57,12 +59,30 @@ public class DeclarationManager {
 		Transport type = Transport.getFromPersianName(transportPersianName);
 		
 		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
-		//owner.addDeclaration(fin);
-		//mrep.update(owner);
-		
+		fin.addReuiredLicense(LicenseRepository.getRepository().read(1));
+		fin.addReuiredLicense(LicenseRepository.getRepository().read(2));
+				
 		DeclarationRepository.getRepository().create(fin);
 		mrep = null;
-		
+
 		return fin.getId();
+	}
+	
+	public Integer getDeclarationInfo(
+			Integer id, Map<String,String> data,
+			List<Map<String,String>> goodsData,
+			List<String> requiredLicensesTitles,
+			List<Map<Integer, String>> issuedPermission) {
+		// returns -1 if declaration not found
+		// data: common data
+		// goodsData: list of goods
+		// requiredLicensesTitles
+		// issuedPermission: permission id and corresponding license title
+		
+		return 0;
+	}
+	
+	public Integer issuePermission(Integer decID, Integer permID) {
+		return 0;
 	}
 }

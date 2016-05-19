@@ -2,7 +2,6 @@ package ir.customs;
 
 import java.io.IOException;
 
-import ir.customs.data.LicenseRepository;
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
 import ir.customs.domain.Agent;
@@ -95,7 +94,7 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-    	//to create admin user for the first time
+//    	//to create admin user for the first time
 //    	UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
 //    	UserRepository.getRepository().create(new Agent("123", "123", "Agent", "Agentian", "AB"));
 //    	
@@ -108,7 +107,7 @@ public class CustomsApp extends Application {
 //			e.printStackTrace();
 //			System.exit(0);
 //		}
-    	
+//    	
         launch(args);
         HibernateUtils.getSessionFactory().close();
     }
