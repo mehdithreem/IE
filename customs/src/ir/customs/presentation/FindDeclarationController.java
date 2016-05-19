@@ -16,10 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.VBox;
 
 public class FindDeclarationController {
 	private CustomsApp customsApp;
+	@SuppressWarnings("unused")
 	private MainWindowController mainWin;
 	
 	@FXML
@@ -54,6 +56,8 @@ public class FindDeclarationController {
 	private TextField issPermID;
 	@FXML
 	private Button issPerm;
+	@FXML
+	private ButtonBar buttBar;
 	
 	@FXML
     private void initialize() {
@@ -162,5 +166,7 @@ public class FindDeclarationController {
 	private void setDisableIssuePerm(Boolean val) {
 		issPerm.setDisable(val);
 		issPermID.setDisable(val);
+		dataPane.setVisible(!val);
+		buttBar.setVisible(!val);
 	}
 }
