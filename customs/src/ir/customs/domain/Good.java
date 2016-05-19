@@ -1,5 +1,8 @@
 package ir.customs.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -55,6 +58,18 @@ public class Good {
 
 	public String getProducer() {
 		return producer;
+	}
+	
+	public Map<String, String> getInfoMap() {
+		Map<String,String> retMap = new HashMap<String,String>();
+		
+		retMap.put("goodName", name);
+		retMap.put("goodWeight", String.valueOf(weight));
+		retMap.put("goodCount", String.valueOf(count));
+		retMap.put("goodUnitPrice", String.valueOf(unitPrice));
+		retMap.put("goodProducer", producer);
+		
+		return retMap;
 	}
 	
 }
