@@ -100,7 +100,7 @@ public class DeclarationManager {
 	}
 	
 	public Integer issuePermission(Integer decID, Integer permID) {
-		Declaration dec = DeclarationRepository.getRepository().read(id);
+		Declaration dec = DeclarationRepository.getRepository().read(decID);
 		if(dec == null)
 			return -1;
 		return 0;
