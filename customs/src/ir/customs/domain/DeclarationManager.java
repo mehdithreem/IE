@@ -98,9 +98,17 @@ public class DeclarationManager {
 	}
 	
 	public Integer issuePermission(Integer decID, Integer permID) {
+		Boolean permFound = false;
 		Declaration dec = DeclarationRepository.getRepository().read(decID);
 		if(dec == null)
 			return -1;
+		
+		for(Permission p : dec.getPendingPermission()){
+			if(p.getId() == permID){
+				permFound = true;
+			}
+		}
+		
 		return 0;
 	}
 }
