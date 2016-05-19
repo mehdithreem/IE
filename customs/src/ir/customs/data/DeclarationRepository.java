@@ -24,7 +24,7 @@ public class DeclarationRepository {
 		session.close();
 	}
 	
-	public Declaration get(Integer id) {
+	public Declaration read(Integer id) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Declaration dec = (Declaration) session.get(Declaration.class, id);
 		session.close();
