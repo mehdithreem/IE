@@ -150,7 +150,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </ScrollPane>
-      <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar fx:id="buttBar" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <TextField fx:id="issPermID" prefWidth="300.0" promptText="شماره‌ی مجوز" />
           <Button fx:id="issPerm" mnemonicParsing="false" prefHeight="27.0" prefWidth="300.0" text="اعلام مجوز جدید" />
