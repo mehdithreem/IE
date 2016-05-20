@@ -130,4 +130,22 @@ public class Declaration {
 		requiredLicenses.add(l);
 	}
 	
+	public void addIssuedPermissions(Permission p) {
+		issuedPermissions.add(p);
+	}
+	
+	public Boolean hasPermission(Permission p) {
+		if (issuedPermissions.contains(p))
+			return true;
+		return false;
+	}
+	
+	public Integer getTotalValue() {
+		Integer total = 0;
+		for(Good g : goods) {
+			total += g.getValue();
+		}
+		
+		return total;
+	}
 }

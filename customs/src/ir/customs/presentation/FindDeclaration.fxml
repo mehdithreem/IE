@@ -153,7 +153,7 @@
       <ButtonBar fx:id="buttBar" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <TextField fx:id="issPermID" prefWidth="300.0" promptText="شماره‌ی مجوز" />
-          <Button fx:id="issPerm" mnemonicParsing="false" prefHeight="27.0" prefWidth="300.0" text="اعلام مجوز جدید" />
+          <Button fx:id="issPerm" mnemonicParsing="false" onAction="#issuePerm" prefHeight="27.0" prefWidth="300.0" text="اعلام مجوز جدید" />
         </buttons>
       </ButtonBar>
    </children>

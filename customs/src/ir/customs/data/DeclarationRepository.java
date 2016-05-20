@@ -31,6 +31,14 @@ public class DeclarationRepository {
 		return dec;
 	}
 	
+	public void update(Declaration dec){
+		Session session = HibernateUtils.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(dec);
+		tx.commit();
+		session.close();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Declaration> getAll() {
 		Session session = HibernateUtils.getSessionFactory().openSession();

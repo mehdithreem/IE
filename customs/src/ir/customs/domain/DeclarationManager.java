@@ -8,6 +8,7 @@ import java.util.Set;
 import ir.customs.data.DeclarationRepository;
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
+import ir.customs.data.PermissionRepository;
 import javafx.util.Pair;
 
 public class DeclarationManager {
@@ -98,9 +99,80 @@ public class DeclarationManager {
 	}
 	
 	public Integer issuePermission(Integer decID, Integer permID) {
+		// return -1 : declaration or permission not found
+		// return -2 : corresponding license not found
+		// return -3 : merchant is not owner
+		// return -4 : permission is expired
+		// return -5 : total value
+		// return -6 : transport type
+		// return -7 : country
+		// return -8 : good
+		// return -9 : permission already added
+		
 		Declaration dec = DeclarationRepository.getRepository().read(decID);
 		if(dec == null)
 			return -1;
+		
+		Permission perm = PermissionRepository.getRepository().read(permID);
+		if(perm == null)
+			return -1;
+		
+		if(dec.hasPermission(perm))
+			return -9;
+		
+		Boolean hasLicense = false;
+		for(License l : dec.getRequiredLicenses()) {
+			if (perm.getLicense().getId().equals(l.getId())) {
+				hasLicense = true;
+				break;
+			}
+		}
+		if (!hasLicense) {
+			return -2;
+		}
+		
+		if(!dec.getMerchant().getNationalID().equals(perm.getOwner().getNationalID()))
+			return -3;
+		
+		if(perm.isExpired())
+			return -4;
+		
+		if(perm.getTotalValue() != null && perm.getTotalValue() > 0)
+			if(perm.getTotalValue() < dec.getTotalValue())
+				return -5;
+		
+		if(perm.getTarsnportType() != null)
+			if(!perm.getTarsnportType().equals(dec.getTarsnportType()))
+				return -6;
+		
+		if(perm.getCountry() != null && !perm.getCountry().equals(""))
+			if(!perm.getCountry().equals(dec.getCountry()))
+				return -7;
+		
+		Good target = null;
+		Boolean permHasGood = false;
+		if(perm.getGoodName() != null && !perm.getGoodName().equals("")) {
+			permHasGood = true;
+			for(Good g : dec.getGoods()) {
+				if(!g.getName().equals(perm.getGoodName()))
+					continue;
+				if(perm.getGoodCount() != null && perm.getGoodCount() < g.getCount())
+					continue;
+				if(perm.getGoodProducer() != null && !perm.getGoodProducer().equals("") &&
+						!perm.getGoodProducer().equals(g.getProducer()))
+					continue;
+				target = g;
+			}
+		}
+		if (target == null && permHasGood)
+			return -8;
+		
+		if (permHasGood) {
+			perm.decreaseTotalValue(target.getCount(), target.getUnitPrice());
+		}
+		dec.addIssuedPermissions(perm);
+		DeclarationRepository.getRepository().update(dec);
+		
 		return 0;
 	}
 }

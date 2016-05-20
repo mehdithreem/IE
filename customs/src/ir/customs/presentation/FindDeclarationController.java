@@ -119,6 +119,10 @@ public class FindDeclarationController {
 		setDisableIssuePerm(false);
 	}
 	
+	public void issuePerm() {
+		
+	}
+	
 	private void setGeneralData(Map<String,String> data) {		
 		decID.setText(data.get("id"));
 		decDecDate.setText(data.get("declareDate"));

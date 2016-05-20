@@ -71,5 +71,9 @@ public class Good {
 		
 		return retMap;
 	}
+
+	public Integer getValue() {
+		return unitPrice * count;
+	}
 	
 }
