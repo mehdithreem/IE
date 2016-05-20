@@ -135,8 +135,10 @@ public class Declaration {
 	}
 	
 	public Boolean hasPermission(Permission p) {
-		if (issuedPermissions.contains(p))
-			return true;
+		for(Permission per : issuedPermissions) {
+			if (per.getId().equals(p.getId()))
+				return true;
+		}
 		return false;
 	}
 	

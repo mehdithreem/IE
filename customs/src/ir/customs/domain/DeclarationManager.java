@@ -171,6 +171,7 @@ public class DeclarationManager {
 			perm.decreaseTotalValue(target.getCount(), target.getUnitPrice());
 		}
 		dec.addIssuedPermissions(perm);
+		PermissionRepository.getRepository().update(perm);
 		DeclarationRepository.getRepository().update(dec);
 		
 		return 0;

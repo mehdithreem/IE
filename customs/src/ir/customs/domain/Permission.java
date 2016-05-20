@@ -111,7 +111,7 @@ public class Permission {
 	}
 
 	public void decreaseTotalValue(Integer count, Integer unitPrice) {
-		this.goodCount -= count;
-		this.totalValue -= count * unitPrice;
+		if (this.goodCount != null) this.goodCount -= count;
+		if (this.totalValue!= null) this.totalValue -= count * unitPrice;
 	}
 }
