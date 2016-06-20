@@ -108,9 +108,6 @@ public class DeclarationManager {
 	}
 	
 	public Integer issuePermission(Integer decID, Integer permID) {
-<<<<<<< HEAD
-		Boolean permFound = false;
-=======
 		// return -1 : declaration or permission not found
 		// return -2 : corresponding license not found
 		// return -3 : merchant is not owner
@@ -121,18 +118,10 @@ public class DeclarationManager {
 		// return -8 : good
 		// return -9 : permission already added
 		
->>>>>>> d356826ebbe19c698e67a740e1dfe69a59bb56e6
 		Declaration dec = DeclarationRepository.getRepository().read(decID);
 		if(dec == null)
 			return -1;
 		
-<<<<<<< HEAD
-		for(Permission p : dec.getPendingPermission()){
-			if(p.getId() == permID){
-				permFound = true;
-			}
-		}
-=======
 		Permission perm = PermissionRepository.getRepository().read(permID);
 		if(perm == null)
 			return -1;
@@ -193,7 +182,6 @@ public class DeclarationManager {
 		dec.addIssuedPermissions(perm);
 		PermissionRepository.getRepository().update(perm);
 		DeclarationRepository.getRepository().update(dec);
->>>>>>> d356826ebbe19c698e67a740e1dfe69a59bb56e6
 		
 		return 0;
 	}
