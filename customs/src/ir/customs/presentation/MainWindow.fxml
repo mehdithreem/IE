@@ -12,6 +12,7 @@
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#logout" text="خروج" />
+            <Button mnemonicParsing="false" onAction="#showCreateUserForm" text="ساخت کاربر جدید" />
             <MenuButton mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="اظهارنامه">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#showFindDeclaration" text="پیگیری اظهارنامه" />

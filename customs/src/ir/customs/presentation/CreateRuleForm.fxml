@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.customs.presentation.CreateDeclrationFormController">
+   <children>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="500.0" prefWidth="600.0" vbarPolicy="ALWAYS" VBox.vgrow="NEVER">
+         <content>
+            <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-fit-to-width: true;">
+               <children>
+                  <TitledPane collapsible="false" text="زمان اجرای قانون">
+                     <content>
+                        <GridPane alignment="CENTER_RIGHT">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="تاریخ شروع" />
+                              <Label text="تاریخ پایان" GridPane.rowIndex="1" />
+                              <DatePicker fx:id="startDate" prefWidth="400.0" GridPane.columnIndex="1" />
+                              <DatePicker fx:id="endDate" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane collapsible="false" layoutX="10.0" layoutY="10.0" text="وزن و ارزش">
+                     <content>
+                        <GridPane alignment="CENTER_RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="حداقل وزن" />
+                              <Label text="حداکثر وزن" GridPane.rowIndex="1" />
+                              <Label layoutX="15.0" layoutY="22.0" text="حداقل تعداد" GridPane.rowIndex="2" />
+                              <Label layoutX="15.0" layoutY="52.0" text="حداکثر تعداد" GridPane.rowIndex="3" />
+                              <Label layoutX="15.0" layoutY="22.0" text="حداقل ارزش کل" GridPane.rowIndex="4" />
+                              <Label layoutX="15.0" layoutY="22.0" text="حداکثر ارزش کل" GridPane.rowIndex="5" />
+                              <TextField fx:id="minW" GridPane.columnIndex="1" />
+                              <TextField fx:id="maxW" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="minC" layoutX="281.0" layoutY="17.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="maxC" layoutX="281.0" layoutY="47.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="minUnitPrice" layoutX="15.0" layoutY="17.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="maxUnitPrice" layoutX="15.0" layoutY="17.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane collapsible="false" text="مجوزهای مورد نیاز">
+                     <content>
+                        <GridPane alignment="CENTER_RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button contentDisplay="CENTER" mnemonicParsing="false" text="اضافه کردن نوع مجوز" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <TextField fx:id="licenseList" disable="true" editable="false" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane collapsible="false" layoutX="10.0" layoutY="346.0" text="کالا">
+                     <content>
+                        <GridPane alignment="CENTER_RIGHT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextField fx:id="newGoodName">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </TextField>
+                              <Button contentDisplay="CENTER" mnemonicParsing="false" text="اضافه کردن کالا" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <TextField fx:id="goodsName" disable="true" editable="false" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
+               </children>
+            </VBox>
+         </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </ScrollPane>
+      <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#submitForm" text="ثبت قانون" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</VBox>

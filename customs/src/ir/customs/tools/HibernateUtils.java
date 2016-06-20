@@ -10,10 +10,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ir.customs.domain.Admin;
 import ir.customs.domain.Agent;
 import ir.customs.domain.Declaration;
+import ir.customs.domain.Employee;
 import ir.customs.domain.Good;
 import ir.customs.domain.License;
 import ir.customs.domain.Merchant;
 import ir.customs.domain.Permission;
+import ir.customs.domain.Senior;
 import ir.customs.domain.User;
 
 public class HibernateUtils {
@@ -31,6 +33,8 @@ public class HibernateUtils {
     				.addPackage("ir.customs.domain")
 						.addAnnotatedClass(Admin.class)
 						.addAnnotatedClass(Agent.class)
+						.addAnnotatedClass(Senior.class)
+						.addAnnotatedClass(Employee.class)
 						.addAnnotatedClass(Declaration.class)
 						.addAnnotatedClass(Good.class)
 						.addAnnotatedClass(License.class)
