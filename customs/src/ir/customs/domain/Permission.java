@@ -14,7 +14,7 @@ import javafx.util.Pair;
 
 @Entity
 public class Permission {
-	@Convert(converter = ir.customs.data.LocalDatePersistenceConverter.class)
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
     @Column(name = "PERMIT_DATE")
 	private final LocalDate permitDate;
 	
@@ -111,7 +111,7 @@ public class Permission {
 	}
 
 	public void decreaseTotalValue(Integer count, Integer unitPrice) {
-		this.goodCount -= count;
-		this.totalValue -= count * unitPrice;
+		if (this.goodCount != null) this.goodCount -= count;
+		if (this.totalValue!= null) this.totalValue -= count * unitPrice;
 	}
 }

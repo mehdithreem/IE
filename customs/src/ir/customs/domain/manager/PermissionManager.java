@@ -1,8 +1,12 @@
-package ir.customs.domain;
+package ir.customs.domain.manager;
 
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
 import ir.customs.data.PermissionRepository;
+import ir.customs.domain.License;
+import ir.customs.domain.Merchant;
+import ir.customs.domain.Permission;
+import ir.customs.domain.Transport;
 
 public class PermissionManager {
 	private static PermissionManager theManager = new PermissionManager();

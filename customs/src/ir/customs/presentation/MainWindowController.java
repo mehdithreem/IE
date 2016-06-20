@@ -3,7 +3,7 @@ package ir.customs.presentation;
 import java.io.IOException;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.UserManager;
+import ir.customs.domain.manager.UserManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

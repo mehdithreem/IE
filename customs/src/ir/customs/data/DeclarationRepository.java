@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ir.customs.domain.Declaration;
-import ir.customs.domain.HibernateUtils;
+import ir.customs.tools.HibernateUtils;
 
 public class DeclarationRepository {
 	private static DeclarationRepository theRepository = new DeclarationRepository();

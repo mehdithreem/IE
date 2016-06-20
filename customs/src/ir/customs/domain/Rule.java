@@ -1,38 +1,60 @@
 package ir.customs.domain;
 
-//import java.time.LocalDate;
-//import java.util.List;
-//import java.util.Map;
+import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+
+@Entity
 public class Rule {
-//	private LocalDate createDate;
-//	private Integer id;
-//	
-//	private LocalDate startDate;
-//	private LocalDate endDate;
-//	
-//	private List<String> country;
-////	private Boolean negCountry = false;
-//	
-//	private Integer minWeight;
-//	private Integer maxWeight;
-//	
-//	private Integer minCount;
-//	private Integer maxCount;
-//	
-//	private List<String> good;
-////	private Boolean negGood = false;
-//	
-//	private List<String> goodProducer;
-////	private Boolean negGoodProduce = false;
-//	
-//	private List<String> merchantNationalID;
-////	private Boolean negMerchantNationalID = false;
-//	
-//	private Map<Transport, Boolean> transportType;
-//	
-//	private List<License> licenses;
-//	
-//	private Integer minTotalValue;
-//	private Integer maxTotalValue;
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
+    @Column(name = "CREATE_DATE")
+	private LocalDate createDate;
+	
+	@Column(name = "RULE_ID")
+	private Integer id;
+	
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
+    @Column(name = "START_DATE")
+	private LocalDate startDate;
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
+    @Column(name = "END_DATE")
+	private LocalDate endDate;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> country;
+	
+	@Column(name = "MIN_W")
+	private Integer minWeight;
+	@Column(name = "MAX_W")
+	private Integer maxWeight;
+	
+	@Column(name = "MIN_C")
+	private Integer minCount;
+	@Column(name = "MAX_C")
+	private Integer maxCount;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> good;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> goodProducer;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> merchantNationalID;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<Transport> transportType;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<License> licenses;
+	
+	@Column(name = "MAX_TOTAL")
+	private Integer minTotalValue;
+	@Column(name = "MIN_TOTAL")
+	private Integer maxTotalValue;
 }

@@ -1,7 +1,7 @@
 package ir.customs.presentation;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.UserManager;
+import ir.customs.domain.manager.UserManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;

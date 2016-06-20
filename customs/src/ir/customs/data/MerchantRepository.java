@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ir.customs.domain.Merchant;
-import ir.customs.domain.HibernateUtils;
+import ir.customs.tools.HibernateUtils;
 
 public class MerchantRepository {
 	private static MerchantRepository theRepository = new MerchantRepository();

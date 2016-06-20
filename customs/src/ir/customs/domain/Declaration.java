@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DECLARATION")
 public class Declaration {
-	@Convert(converter = ir.customs.data.LocalDatePersistenceConverter.class)
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
     @Column(name = "TIME")
 	private final LocalDate declareDate;
 	
@@ -38,7 +38,7 @@ public class Declaration {
 	@Column(name = "TRANSPORT_TYPE")
 	private Transport tarsnportType;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<License> requiredLicenses;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Permission> issuedPermissions;
@@ -135,8 +135,10 @@ public class Declaration {
 	}
 	
 	public Boolean hasPermission(Permission p) {
-		if (issuedPermissions.contains(p))
-			return true;
+		for(Permission per : issuedPermissions) {
+			if (per.getId().equals(p.getId()))
+				return true;
+		}
 		return false;
 	}
 	

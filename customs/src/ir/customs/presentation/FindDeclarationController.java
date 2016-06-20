@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.DeclarationManager;
+import ir.customs.domain.manager.DeclarationManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -120,7 +120,74 @@ public class FindDeclarationController {
 	}
 	
 	public void issuePerm() {
+		// return -1 : declaration or permission not found
+		// return -2 : corresponding license not found
+		// return -3 : merchant is not owner
+		// return -4 : permission is expired
+		// return -5 : total value
+		// return -6 : transport type
+		// return -7 : country
+		// return -8 : good
+		// return -9 : permission already added
 		
+		if(issPermID.getText() == null || issPermID.getText().equals(""))
+			return;
+		
+		Integer permId = 0;
+		
+		try {
+			permId = Integer.valueOf(issPermID.getText());
+		} catch (Exception e) {
+			return;
+		}
+		
+		Integer retVal = DeclarationManager.getManager().issuePermission(Integer.valueOf(decID.getText()), permId);
+		
+		String err = "";
+		switch (retVal) {
+		case 0:
+			findDecID.setText(decID.getText());
+			issPermID.setText("");
+			findDec();
+			return;
+		case -1:
+			err = "شماره‌ی مجوز وارد شده نامعتبر می‌باشد.";
+			break;
+		case -2:
+			err = "مجوز وارد شده جز مجوزهای مورد نیاز این اظهارنامه نمی‌باشد.";
+			break;
+		case -3:
+			err = "مجوز وارد شده متعلق به این تاجر نمی‌باشد.";
+			break;
+		case -4:
+			err = "اعتبار مجوز وارد شده به پایان رسیده است.";
+			break;
+		case -5:
+			err = "ارزش کل کالاها مغایرت دارد.";
+			break;
+		case -6:
+			err = "نحوه‌ی واردات کالاها مغایرت دارد.";
+			break;
+		case -7:
+			err = "کشور مبدا مغایرت دارد.";
+			break;
+		case -8:
+			err = "کالاها مغایرت دارند.";
+			break;
+		case -9:
+			err = "این مجوز قبلا وارد شده است.";
+			break;
+		default:
+			err = "ناموق";
+			break;
+		}
+		
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.initOwner(customsApp.getPrimaryStage());
+		alert.setTitle("خطا در ثبت مجوز");
+  		alert.setHeaderText(err);
+  		
+  		alert.showAndWait();		
 	}
 	
 	private void setGeneralData(Map<String,String> data) {		
@@ -135,6 +202,7 @@ public class FindDeclarationController {
 	}
 	
 	private void setGoods(List<Map<String,String>> goods) {
+		newGoodsVBox.getChildren().clear();
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(CustomsApp.class.getResource("presentation/NewGoodData.fxml"));
@@ -152,7 +220,7 @@ public class FindDeclarationController {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	private void clearDecFields() {
 		decID.setText("");
 		decDecDate.setText("");
