@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.DeclarationManager;
+import ir.customs.domain.manager.DeclarationManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;

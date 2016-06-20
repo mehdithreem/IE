@@ -1,4 +1,4 @@
-package ir.customs.domain;
+package ir.customs.tools;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -6,6 +6,15 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import ir.customs.domain.Admin;
+import ir.customs.domain.Agent;
+import ir.customs.domain.Declaration;
+import ir.customs.domain.Good;
+import ir.customs.domain.License;
+import ir.customs.domain.Merchant;
+import ir.customs.domain.Permission;
+import ir.customs.domain.User;
 
 public class HibernateUtils {
 

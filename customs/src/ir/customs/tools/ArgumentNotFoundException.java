@@ -1,4 +1,4 @@
-package ir.customs.domain;
+package ir.customs.tools;
 
 public class ArgumentNotFoundException extends Exception {
 	/**

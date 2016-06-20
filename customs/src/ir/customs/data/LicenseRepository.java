@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ir.customs.domain.HibernateUtils;
 import ir.customs.domain.License;
+import ir.customs.tools.HibernateUtils;
 
 public class LicenseRepository {
 	private static LicenseRepository theRepository = new LicenseRepository();

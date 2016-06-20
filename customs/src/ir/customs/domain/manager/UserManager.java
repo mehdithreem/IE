@@ -1,6 +1,7 @@
-package ir.customs.domain;
+package ir.customs.domain.manager;
 
 import ir.customs.data.UserRepository;
+import ir.customs.domain.User;
 
 public class UserManager {
 	private static UserManager theManager = new UserManager();

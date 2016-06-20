@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.ArgumentNotFoundException;
-import ir.customs.domain.DeclarationManager;
 import ir.customs.domain.Transport;
+import ir.customs.domain.manager.DeclarationManager;
+import ir.customs.tools.ArgumentNotFoundException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;

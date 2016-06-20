@@ -14,7 +14,7 @@ import javafx.util.Pair;
 
 @Entity
 public class Permission {
-	@Convert(converter = ir.customs.data.LocalDatePersistenceConverter.class)
+	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
     @Column(name = "PERMIT_DATE")
 	private final LocalDate permitDate;
 	

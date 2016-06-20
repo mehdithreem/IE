@@ -1,4 +1,4 @@
-package ir.customs.domain;
+package ir.customs.domain.manager;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +9,13 @@ import ir.customs.data.DeclarationRepository;
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
 import ir.customs.data.PermissionRepository;
+import ir.customs.domain.Declaration;
+import ir.customs.domain.Good;
+import ir.customs.domain.License;
+import ir.customs.domain.Merchant;
+import ir.customs.domain.Permission;
+import ir.customs.domain.Transport;
+import ir.customs.tools.ArgumentNotFoundException;
 import javafx.util.Pair;
 
 public class DeclarationManager {
@@ -61,10 +68,12 @@ public class DeclarationManager {
 		Transport type = Transport.getFromPersianName(transportPersianName);
 		
 		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
+		
 		fin.addReuiredLicense(LicenseRepository.getRepository().read(1));
 		fin.addReuiredLicense(LicenseRepository.getRepository().read(2));
 				
 		DeclarationRepository.getRepository().create(fin);
+		
 		mrep = null;
 
 		return fin.getId();

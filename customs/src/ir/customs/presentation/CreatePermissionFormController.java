@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.LicenseManager;
-import ir.customs.domain.PermissionManager;
 import ir.customs.domain.Transport;
+import ir.customs.domain.manager.LicenseManager;
+import ir.customs.domain.manager.PermissionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

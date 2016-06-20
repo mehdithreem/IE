@@ -1,4 +1,4 @@
-package ir.customs.domain;
+package ir.customs.domain.manager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.Map;
 
 import ir.customs.data.LicenseRepository;
 import ir.customs.data.UserRepository;
+import ir.customs.domain.Agent;
+import ir.customs.domain.License;
 
 public class LicenseManager {
 	private static LicenseManager theManager = new LicenseManager();
