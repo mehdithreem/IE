@@ -106,5 +106,12 @@ public class Permission {
 		return goodCount;
 	}
 	
-	
+	public Boolean isExpired() {
+		return LocalDate.now().isAfter(permitDate.plusDays(license.getValidityDuration()));
+	}
+
+	public void decreaseTotalValue(Integer count, Integer unitPrice) {
+		this.goodCount -= count;
+		this.totalValue -= count * unitPrice;
+	}
 }
