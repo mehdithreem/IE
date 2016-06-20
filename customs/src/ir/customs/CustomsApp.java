@@ -5,6 +5,8 @@ import java.io.IOException;
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
 import ir.customs.domain.Agent;
+import ir.customs.domain.Employee;
+import ir.customs.domain.Senior;
 import ir.customs.domain.manager.LicenseManager;
 import ir.customs.presentation.LoginWindowController;
 import ir.customs.presentation.MainWindowController;
@@ -94,20 +96,20 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-    	//to create admin user for the first time
-    	UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
-    	UserRepository.getRepository().create(new Agent("123", "123", "Agent", "Agentian", "AB"));
-    	
-    	//to create licenses
-    	try {
-			LicenseManager.getManager().createLicense("مجوز تست", 10, "123");
-			LicenseManager.getManager().createLicense("۲ مجوز تست", 10, "123");
-		} catch (Exception e) {
-			System.out.println("Agent not found.");
-			e.printStackTrace();
-			System.exit(0);
-		}
+//    	//to create admin user for the first time
+//    	UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
+//    	UserRepository.getRepository().create(new Agent("123", "123", "Agent", "Agentian", "AB"));
 //    	
+//    	//to create licenses
+//    	try {
+//			LicenseManager.getManager().createLicense("مجوز تست", 10, "123");
+//			LicenseManager.getManager().createLicense("۲ مجوز تست", 10, "123");
+//		} catch (Exception e) {
+//			System.out.println("Agent not found.");
+//			e.printStackTrace();
+//			System.exit(0);
+//		}
+    	
         launch(args);
         HibernateUtils.getSessionFactory().close();
     }

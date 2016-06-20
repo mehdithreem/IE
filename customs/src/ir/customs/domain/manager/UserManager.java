@@ -1,6 +1,11 @@
 package ir.customs.domain.manager;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.hibernate.exception.ConstraintViolationException;
+
 import ir.customs.data.UserRepository;
+import ir.customs.domain.Agent;
 import ir.customs.domain.User;
 
 public class UserManager {
@@ -24,6 +29,40 @@ public class UserManager {
 		} else {
 			return false;
 		}
+	}
+	
+	public Integer createUser(
+			String NID,
+			String firstName,
+			String lastName,
+			String password,
+			String orgName,
+			@SuppressWarnings("rawtypes") Class userClass
+			) {
+		// -2 : InternalError
+		// -1 : duplicate NID
+		
+		User nuser = null;	
+		try {
+			nuser = (User) userClass.getConstructors()[0].newInstance(NID, firstName, lastName, password);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| SecurityException e) {
+			e.printStackTrace();
+			System.out.println("Create user failed");
+			return -2;
+		}
+		
+		if (userClass.equals(Agent.class))
+			((Agent) nuser).setOrganizationName(orgName);
+		
+		try {
+			UserRepository.getRepository().create(nuser);
+		} catch (ConstraintViolationException e) {
+			System.out.println("duplicate user NID");
+			return -1;
+		}
+		
+		return 0;
 	}
 	
 	public void signOut() {
