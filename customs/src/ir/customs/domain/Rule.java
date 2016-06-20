@@ -42,9 +42,6 @@ public class Rule {
 	private List<String> good;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> goodProducer;
-	
-	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> merchantNationalID;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
