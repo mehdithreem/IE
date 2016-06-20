@@ -69,8 +69,9 @@ public class DeclarationManager {
 		
 		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
 		
-		fin.addReuiredLicense(LicenseRepository.getRepository().read(1));
-		fin.addReuiredLicense(LicenseRepository.getRepository().read(2));
+		List<License> lcs = RuleManager.getManager().getRelatedLicenses(fin);
+		for(License license : lcs)
+			fin.addReuiredLicense(license);
 				
 		DeclarationRepository.getRepository().create(fin);
 		
