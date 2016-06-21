@@ -57,7 +57,7 @@ public class CreatePermissionFormController {
 		
 		//Initializing LicenseName choice box
 		LicenseName = new ComboBox<String>();
-		licensesMap = LicenseManager.getManager().getLicenseTitles();
+		licensesMap = LicenseManager.getManager().getActiveUserLicenseTitles();
 		List<String> licOptionsList = new ArrayList<String>();
 		licOptionsList.addAll(licensesMap.keySet());
 		ObservableList<String> licOptions = FXCollections.observableList(licOptionsList);

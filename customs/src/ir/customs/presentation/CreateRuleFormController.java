@@ -60,7 +60,7 @@ public class CreateRuleFormController {
 	private void initialize() {
 		//Initializing LicenseName choice box
 		licenseName = new ComboBox<String>();
-		licensesMap = LicenseManager.getManager().getLicenseTitles();
+		licensesMap = LicenseManager.getManager().getActiveUserLicenseTitles();
 		List<String> licOptionsList = new ArrayList<String>();
 		licOptionsList.addAll(licensesMap.keySet());
 		ObservableList<String> licOptions = FXCollections.observableList(licOptionsList);

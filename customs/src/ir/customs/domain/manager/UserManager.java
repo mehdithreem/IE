@@ -88,4 +88,12 @@ public class UserManager {
 		
 		return activeUser.hasAcess(a);
 	}
+	
+	public String getActiveUserOrg() {
+		return ((Agent) activeUser).getOrganizationName();
+	}
+
+	public boolean isAgentActive() {
+		return activeUser.getClass().equals(Agent.class);
+	}
 }

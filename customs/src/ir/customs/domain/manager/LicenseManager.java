@@ -44,12 +44,15 @@ public class LicenseManager {
 		return null;
 	}
 
-	public Map<String ,Integer > getLicenseTitles() {
+	public Map<String ,Integer> getActiveUserLicenseTitles() {
 		LicenseRepository lrep = LicenseRepository.getRepository();
 		Map<String ,Integer> rtm = new HashMap<String ,Integer>();
-		List<License> ll = lrep.getAll();
-		for(License l : ll){
-			rtm.put(l.getTitle() , l.getId());
+		if (UserManager.getManager().isAgentActive()) {
+			List<License> ll = lrep.getAll();
+			for(License l : ll){
+				if (UserManager.getManager().getActiveUserOrg().equals(l.getIssuer().getOrganizationName()))
+					rtm.put(l.getTitle() , l.getId());
+			}
 		}
 		return rtm;
 	}
