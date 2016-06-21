@@ -13,6 +13,7 @@ import ir.customs.domain.License;
 import ir.customs.domain.Rule;
 
 public class RuleManager {
+	private int inf = Integer.MAX_VALUE;
 	private static RuleManager theManager = new RuleManager();
 	public static RuleManager getManager() {
 		return theManager;
@@ -57,16 +58,20 @@ public class RuleManager {
 			if( (rSDate!=null && decDate.isBefore(rSDate)) || (rEDate!=null && decDate.isAfter(rEDate)) )
 				continue;
 			
+			Integer maxC = (r.getMaxCount() ==null) ? inf : r.getMaxCount();
+			Integer minC = (r.getMinCount() ==null) ? 0 : r.getMinCount();
+			Integer maxUP = (r.getMaxUnitPrice() ==null) ? inf : r.getMaxUnitPrice();
+			Integer minUP = (r.getMinUnitPrice() ==null) ? 0 : r.getMinUnitPrice();
+			Integer maxW = (r.getMaxWeight() ==null) ? inf : r.getMaxWeight();
+			Integer minW = (r.getMinWeight() ==null) ? inf : r.getMinWeight();
+
 			List <String> gl = r.getGood();
 			for(String rg : gl)
 				for(Good dg : decGoods)
 					if(dg.getName().equals(rg)){
-						if( ( (r.getMaxCount()!=null) && (dg.getCount() < r.getMaxCount()) ) ||
-							( (r.getMinCount()!=null) && (dg.getCount() > r.getMinCount()) ) ||
-							( (r.getMaxUnitPrice()!=null) && (dg.getUnitPrice() < r.getMaxUnitPrice()) ) ||
-							( (r.getMinUnitPrice()!=null) && (dg.getUnitPrice() > r.getMinUnitPrice()) ) ||
-							( (r.getMaxWeight()!=null) && (dg.getWeight() < r.getMaxWeight()) ) ||
-							( (r.getMinWeight()!=null) && (dg.getWeight() > r.getMinWeight()) ))
+						if( ( dg.getCount() < maxC ) && (dg.getCount() > minC ) &&
+							(dg.getUnitPrice() < maxUP ) && (dg.getUnitPrice() > minUP ) &&
+							(dg.getWeight() < maxW ) && (dg.getWeight() > minW ))
 								ret.addAll(r.getLicenses());
 					}	
 		}
