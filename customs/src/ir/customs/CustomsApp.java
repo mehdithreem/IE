@@ -1,12 +1,10 @@
 package ir.customs;
 
 import java.io.IOException;
-
 import org.hibernate.exception.ConstraintViolationException;
 
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
-import ir.customs.domain.Agent;
 import ir.customs.presentation.LoginWindowController;
 import ir.customs.presentation.MainWindowController;
 import ir.customs.tools.HibernateUtils;
@@ -100,7 +98,7 @@ public class CustomsApp extends Application {
     	} catch (ConstraintViolationException e) {
     		System.out.println("Admin already added to database.");
     	}
-
+    	
         launch(args);
         HibernateUtils.getSessionFactory().close();
     }

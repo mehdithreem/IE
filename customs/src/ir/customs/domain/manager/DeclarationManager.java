@@ -1,5 +1,6 @@
 package ir.customs.domain.manager;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class DeclarationManager {
 		
 		Declaration fin = new Declaration(owner,goodInsts,sourceCountry, type);
 		
-		List<License> lcs = RuleManager.getManager().getRelatedLicenses(fin);
+		Collection<License> lcs = RuleManager.getManager().getRelatedLicenses(fin);
 		for(License license : lcs)
 			fin.addReuiredLicense(license);
 				

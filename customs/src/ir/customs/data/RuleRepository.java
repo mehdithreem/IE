@@ -2,6 +2,7 @@ package ir.customs.data;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -39,11 +40,11 @@ public class RuleRepository {
 		session.close();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Rule> getAll() {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		List<Rule> list = session.createCriteria(Rule.class).list();
-		session.close();
+		Query query = session.createQuery("from Rule");
+		@SuppressWarnings("unchecked")
+		List<Rule> list = query.list();
 		return list;
 	}
 }
