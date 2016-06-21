@@ -8,15 +8,19 @@ import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Rule {
+	// null values indicated not set
 	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
     @Column(name = "CREATE_DATE")
 	private LocalDate createDate;
 	
-	@Column(name = "RULE_ID")
+	@Id
+	@GeneratedValue
 	private Integer id;
 	
 	@Convert(converter = ir.customs.tools.LocalDatePersistenceConverter.class)
@@ -50,6 +54,7 @@ public class Rule {
 	public Rule(LocalDate startDate, LocalDate endDate, Integer minWeight, Integer maxWeight, Integer minCount,
 			Integer maxCount, List<String> good, List<License> licenses, Integer minUnitPrice, Integer maxUnitPrice) {
 		super();
+		createDate = LocalDate.now();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.minWeight = minWeight;
@@ -59,6 +64,58 @@ public class Rule {
 		this.good = good;
 		this.licenses = licenses;
 		this.minUnitPrice = minUnitPrice;
+		this.maxUnitPrice = maxUnitPrice;
+	}
+	
+	protected Rule() {
+		
+	}
+
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setMinWeight(Integer minWeight) {
+		this.minWeight = minWeight;
+	}
+
+	public void setMaxWeight(Integer maxWeight) {
+		this.maxWeight = maxWeight;
+	}
+
+	public void setMinCount(Integer minCount) {
+		this.minCount = minCount;
+	}
+
+	public void setMaxCount(Integer maxCount) {
+		this.maxCount = maxCount;
+	}
+
+	public void setGood(List<String> good) {
+		this.good = good;
+	}
+
+	public void setLicenses(List<License> licenses) {
+		this.licenses = licenses;
+	}
+
+	public void setMinUnitPrice(Integer minUnitPrice) {
+		this.minUnitPrice = minUnitPrice;
+	}
+
+	public void setMaxUnitPrice(Integer maxUnitPrice) {
 		this.maxUnitPrice = maxUnitPrice;
 	}
 

@@ -6,21 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
-import ir.customs.domain.Transport;
 import ir.customs.domain.manager.LicenseManager;
-import ir.customs.domain.manager.PermissionManager;
 import ir.customs.domain.manager.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 public class CreateLicenseFormController {
 	private CustomsApp customsApp;
@@ -56,7 +51,9 @@ public class CreateLicenseFormController {
 		} catch(NumberFormatException e) {
 		     errorMessage += "نوع ورودی داده شده برای مدت زمان اعتبار معتبر نیست. \n";
 		}
-		Integer.valueOf(validityDuration.getText());
+		if(agentList.getValue() == null) {
+			errorMessage += "نهاد صادر کننده مشخص نشده است.\n";
+		}
 		
 		if(errorMessage.length() == 0)
 			return true;
@@ -73,6 +70,7 @@ public class CreateLicenseFormController {
 		}
 	}
 	
+	@FXML
 	private void initialize() {
 		agentList = new ComboBox<String>();
 		Map<String,String> agentMap = UserManager.getManager().getAgentList();
@@ -90,7 +88,7 @@ public class CreateLicenseFormController {
 		agentList.setItems(agntOptions);
 		agentList.setPrefWidth(320);
 		
-		mainGrid.add(agentList, 2, 1);
+		mainGrid.add(agentList, 1, 2);
 	}
 	
 	public void submitForm() {

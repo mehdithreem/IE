@@ -15,6 +15,7 @@ import ir.customs.domain.Good;
 import ir.customs.domain.License;
 import ir.customs.domain.Merchant;
 import ir.customs.domain.Permission;
+import ir.customs.domain.Rule;
 import ir.customs.domain.Senior;
 import ir.customs.domain.User;
 
@@ -41,6 +42,7 @@ public class HibernateUtils {
 						.addAnnotatedClass(Merchant.class)
 						.addAnnotatedClass(Permission.class)
 						.addAnnotatedClass(User.class)
+						.addAnnotatedClass(Rule.class)
     		    .getMetadataBuilder()
     		    .applyImplicitNamingStrategy( ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )
     		    .build();

@@ -13,6 +13,8 @@
          <children>
             <Button mnemonicParsing="false" onAction="#logout" text="خروج" />
             <Button mnemonicParsing="false" onAction="#showCreateUserForm" text="ساخت کاربر جدید" />
+            <Button mnemonicParsing="false" onAction="#showCreateLicenseForm" text="ایجاد نوع مجوز" />
+            <Button mnemonicParsing="false" onAction="#showCreateRuleForm" text="ایجاد قانون" />
             <MenuButton mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="اظهارنامه">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#showFindDeclaration" text="پیگیری اظهارنامه" />

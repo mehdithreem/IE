@@ -2,12 +2,10 @@ package ir.customs;
 
 import java.io.IOException;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import ir.customs.data.UserRepository;
 import ir.customs.domain.Admin;
-import ir.customs.domain.Agent;
-import ir.customs.domain.Employee;
-import ir.customs.domain.Senior;
-import ir.customs.domain.manager.LicenseManager;
 import ir.customs.presentation.LoginWindowController;
 import ir.customs.presentation.MainWindowController;
 import ir.customs.tools.HibernateUtils;
@@ -96,19 +94,11 @@ public class CustomsApp extends Application {
     }
 
     public static void main(String[] args) {
-//    	//to create admin user for the first time
-//    	UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
-//    	UserRepository.getRepository().create(new Agent("123", "123", "Agent", "Agentian", "AB"));
-//    	
-//    	//to create licenses
-//    	try {
-//			LicenseManager.getManager().createLicense("مجوز تست", 10, "123");
-//			LicenseManager.getManager().createLicense("۲ مجوز تست", 10, "123");
-//		} catch (Exception e) {
-//			System.out.println("Agent not found.");
-//			e.printStackTrace();
-//			System.exit(0);
-//		}
+    	try {
+    		UserRepository.getRepository().create(new Admin("admin", "admin", "Super", "Power"));
+    	} catch (ConstraintViolationException e) {
+    		System.out.println("Admin already added to database.");
+    	}
     	
         launch(args);
         HibernateUtils.getSessionFactory().close();
