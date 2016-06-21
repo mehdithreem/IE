@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -33,7 +34,7 @@ public abstract class User {
 	@Column( name = "LAST_NAME")
 	private String lastName;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable
     @MapKeyColumn(name = "ACCESS")
     @Column(name = "ACC_BOOLEAN")
@@ -86,5 +87,9 @@ public abstract class User {
 
 	public String getNationalID() {
 		return nationalID;
+	}
+
+	public Boolean hasAcess(Access a) {
+		return access.get(a);
 	}	
 }

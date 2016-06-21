@@ -12,7 +12,7 @@ public class Employee extends User {
 		
 		super.access.replace(Access.CreateDeclration, true);
 		super.access.replace(Access.ViewDeclration, true);
-		super.access.replace(Access.ViewMerchant, true);
+		super.access.replace(Access.IssuingPermission, true);
 	}
 	
 	protected Employee() {

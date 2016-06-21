@@ -3,14 +3,9 @@ package ir.customs.domain;
 public enum Access {
 	CreateDeclration,
 	ViewDeclration,
-	EditDeclration,
+	CreatePermission,
 	IssuingPermission,
-	ViewPermission,
 	CreateRule,
-	ViewRule,
-	EditRule,
-	ViewMerchant,
-	ViewUser,
-	CreateUser,
-	EditUser
+	CreateLicense,
+	CreateUser
 }

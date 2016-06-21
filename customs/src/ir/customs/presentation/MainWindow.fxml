@@ -9,19 +9,19 @@
 
 <BorderPane maxHeight="600.0" maxWidth="800.0" minHeight="400.0" minWidth="400.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.customs.presentation.MainWindowController">
    <top>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="topMenu" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#logout" text="خروج" />
-            <Button mnemonicParsing="false" onAction="#showCreateUserForm" text="ساخت کاربر جدید" />
-            <Button mnemonicParsing="false" onAction="#showCreateLicenseForm" text="ایجاد نوع مجوز" />
-            <Button mnemonicParsing="false" onAction="#showCreateRuleForm" text="ایجاد قانون" />
-            <MenuButton mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="اظهارنامه">
+            <Button fx:id="createUserBTN" mnemonicParsing="false" onAction="#showCreateUserForm" text="ساخت کاربر جدید" />
+            <Button fx:id="createLicenseBTN" mnemonicParsing="false" onAction="#showCreateLicenseForm" text="ایجاد نوع مجوز" />
+            <Button fx:id="createRuleBTN" mnemonicParsing="false" onAction="#showCreateRuleForm" text="ایجاد قانون" />
+            <MenuButton fx:id="declarationBTN" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="اظهارنامه">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#showFindDeclaration" text="پیگیری اظهارنامه" />
-                <MenuItem mnemonicParsing="false" onAction="#showCreateDeclrationFrom" text="ایجاد اظهارنامه" />
+                <MenuItem fx:id="viewDeclarationBTN" mnemonicParsing="false" onAction="#showFindDeclaration" text="پیگیری اظهارنامه" />
+                <MenuItem fx:id="createDeclarationBTN" mnemonicParsing="false" onAction="#showCreateDeclrationFrom" text="ایجاد اظهارنامه" />
               </items>
             </MenuButton>
-            <Button layoutX="349.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreatePermissionFrom" text="ایجاد  مجوز" />
+            <Button fx:id="createPermissionBTN" layoutX="349.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreatePermissionFrom" text="ایجاد  مجوز" />
             <Button mnemonicParsing="false" onAction="#showHome" text="خانه" />
          </children>
          <padding>

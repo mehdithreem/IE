@@ -7,6 +7,7 @@ import java.util.Map;
 import org.hibernate.exception.ConstraintViolationException;
 
 import ir.customs.data.UserRepository;
+import ir.customs.domain.Access;
 import ir.customs.domain.Agent;
 import ir.customs.domain.User;
 
@@ -79,5 +80,12 @@ public class UserManager {
 	
 	public void signOut() {
 		activeUser = null;
+	}
+	
+	public Boolean hasAccess(Access a) {
+		if (activeUser == null)
+			return false;
+		
+		return activeUser.hasAcess(a);
 	}
 }

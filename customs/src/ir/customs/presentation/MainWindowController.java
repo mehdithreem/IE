@@ -3,23 +3,66 @@ package ir.customs.presentation;
 import java.io.IOException;
 
 import ir.customs.CustomsApp;
+import ir.customs.domain.Access;
 import ir.customs.domain.manager.UserManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class MainWindowController {
 	// Reference to the main application.
     private CustomsApp customsApp;
     
-    public MainWindowController() {
-    	
-    }
+    @FXML
+    private HBox topMenu;
+    
+    @FXML
+    private Button createPermissionBTN;
+    @FXML
+    private Button createRuleBTN;
+    @FXML
+    private Button createLicenseBTN;
+    @FXML
+    private Button createUserBTN;
+    @FXML
+    private MenuButton declarationBTN;
+    @FXML
+    private MenuItem createDeclarationBTN;
+    @FXML
+    private MenuItem viewDeclarationBTN;
     
     @FXML
     private void initialize() {
+    	topMenu.managedProperty().bind(createPermissionBTN.visibleProperty());
+    	handleAccess();
+    }
+    
+    private void handleAccess() {
+    	// there is a access control in FindDeclarationController.setDisableIssuePerm
+    	UserManager mng = UserManager.getManager();
     	
+    	if (!mng.hasAccess(Access.CreatePermission)){
+    		topMenu.getChildren().remove(createPermissionBTN);
+    	}
+    	if (!mng.hasAccess(Access.CreateRule)) {
+    		topMenu.getChildren().remove(createRuleBTN);
+    	}
+    	if (!mng.hasAccess(Access.CreateLicense)) {
+    		topMenu.getChildren().remove(createLicenseBTN);
+    	}
+    	if (!mng.hasAccess(Access.CreateUser)) {
+    		topMenu.getChildren().remove(createUserBTN);
+    	}
+    	if (!mng.hasAccess(Access.ViewDeclration) && !mng.hasAccess(Access.CreateDeclration)) {
+    		topMenu.getChildren().remove(declarationBTN);
+    	}
+    	createDeclarationBTN.setDisable(!mng.hasAccess(Access.CreateDeclration));
+    	viewDeclarationBTN.setDisable(!mng.hasAccess(Access.ViewDeclration));
     }
     
     public void showCreateDeclrationFrom() {

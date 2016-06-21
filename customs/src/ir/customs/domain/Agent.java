@@ -26,7 +26,10 @@ public class Agent extends User {
 			String firstName, String lastName) {
 		super(nationalID, password, firstName, lastName);
 		organizationName = null;
-		super.access.replace(Access.IssuingPermission, true);
+		
+		super.access.replace(Access.CreateLicense, true);
+		super.access.replace(Access.CreatePermission, true);
+		super.access.replace(Access.ViewDeclration, true);
 	}
 	
 	

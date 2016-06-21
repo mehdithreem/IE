@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import ir.customs.CustomsApp;
+import ir.customs.domain.Access;
 import ir.customs.domain.manager.DeclarationManager;
+import ir.customs.domain.manager.UserManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -239,6 +241,6 @@ public class FindDeclarationController {
 		issPerm.setDisable(val);
 		issPermID.setDisable(val);
 		dataPane.setVisible(!val);
-		buttBar.setVisible(!val);
+		buttBar.setVisible(!val && UserManager.getManager().hasAccess(Access.IssuingPermission));
 	}
 }
