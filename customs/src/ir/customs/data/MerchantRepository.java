@@ -1,6 +1,5 @@
 package ir.customs.data;
 
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,14 +28,6 @@ public class MerchantRepository {
 		Merchant mer = (Merchant) session.get(Merchant.class, nid);
 		session.close();
 		return mer;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Merchant> getAll() {
-		Session session = HibernateUtils.getSessionFactory().openSession();
-		List<Merchant> list = session.createCriteria(Merchant.class).list();
-		session.close();
-		return list;
 	}
 	
 	public void update(Merchant mer){

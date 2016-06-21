@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -99,7 +100,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <TextField fx:id="goodsName" disable="true" editable="false" GridPane.rowIndex="1" />
+                              <TextArea fx:id="goodsName" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </GridPane>
                      </content>

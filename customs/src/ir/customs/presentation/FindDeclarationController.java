@@ -205,11 +205,11 @@ public class FindDeclarationController {
 	
 	private void setGoods(List<Map<String,String>> goods) {
 		newGoodsVBox.getChildren().clear();
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(CustomsApp.class.getResource("presentation/NewGoodData.fxml"));
-			
+		try {			
 			for(Map<String,String> infoMap : goods) {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(CustomsApp.class.getResource("presentation/NewGoodData.fxml"));
+				
 				TitledPane newtpane = (TitledPane) loader.load();
 				
 				((NewGoodDataController) loader.getController()).setData(infoMap);

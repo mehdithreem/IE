@@ -45,6 +45,7 @@ public class RuleRepository {
 		Query query = session.createQuery("from Rule");
 		@SuppressWarnings("unchecked")
 		List<Rule> list = query.list();
+		session.close();
 		return list;
 	}
 }

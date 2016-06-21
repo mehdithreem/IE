@@ -93,10 +93,12 @@ public class DeclarationManager {
 		data.putAll(dec.getInfoMap());
 		
 		for(Good g : dec.getGoods()){
+			System.out.println("goods: " + g.getName());
 			goodsData.add(g.getInfoMap());
 		}
 		
 		for(License l : dec.getRequiredLicenses()){
+			System.out.println("licenses: " + l.getTitle());
 			requiredLicensesTitles.add(l.getTitle());
 		}
 		

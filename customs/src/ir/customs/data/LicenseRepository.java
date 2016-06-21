@@ -2,6 +2,7 @@ package ir.customs.data;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,11 +30,12 @@ public class LicenseRepository {
 		session.close();
 		return lcs;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	public List<License> getAll() {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		List<License> list = session.createCriteria(License.class).list();
+		Query query = session.createQuery("from License");
+		@SuppressWarnings("unchecked")
+		List<License> list = query.list();
 		session.close();
 		return list;
 	}

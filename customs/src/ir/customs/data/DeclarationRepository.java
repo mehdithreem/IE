@@ -1,6 +1,5 @@
 package ir.customs.data;
 
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -37,13 +36,5 @@ public class DeclarationRepository {
 		session.update(dec);
 		tx.commit();
 		session.close();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Declaration> getAll() {
-		Session session = HibernateUtils.getSessionFactory().openSession();
-		List<Declaration> list = session.createCriteria(Declaration.class).list();
-		session.close();
-		return list;
 	}
 }

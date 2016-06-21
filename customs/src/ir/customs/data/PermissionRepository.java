@@ -1,7 +1,5 @@
 package ir.customs.data;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,14 +27,6 @@ public class PermissionRepository {
 		prm = (Permission) session.get(Permission.class, id);
 		session.close();
 		return prm;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Permission> getAll() {
-		Session session = HibernateUtils.getSessionFactory().openSession();
-		List<Permission> list = session.createCriteria(Permission.class).list();
-		session.close();
-		return list;
 	}
 	
 	public void update(Permission prm){
