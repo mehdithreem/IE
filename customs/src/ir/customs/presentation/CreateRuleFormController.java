@@ -102,16 +102,19 @@ public class CreateRuleFormController {
 		
 		Integer ruleID = -1;
 		
+		List<Integer> licenses = new ArrayList<Integer>();
+		licenses.addAll(selectedLicenses.values());
+		
 		try {
 			RuleManager.getManager().submitRule(
-					startDate.getValue(),
+					startDate.getValue(), 
 					endDate.getValue(),
-					(minW.getText() != null && !minW.getText().equals("")) ? Integer.valueOf(minW.getText()) : null,
-					(maxW.getText() != null && !maxW.getText().equals("")) ? Integer.valueOf(maxW.getText()) : null,
-					(minC.getText() != null && !minC.getText().equals("")) ? Integer.valueOf(minC.getText()) : null,
-					(maxC.getText() != null && !maxC.getText().equals("")) ? Integer.valueOf(maxC.getText()) : null,
+					(minW.getText() != null && !minW.getText().equals("")) ? Integer.valueOf(minW.getText()) : null, 
+					(maxW.getText() != null && !maxW.getText().equals("")) ? Integer.valueOf(maxW.getText()) : null, 
+					(minC.getText() != null && !minC.getText().equals("")) ? Integer.valueOf(minC.getText()) : null, 
+					(maxC.getText() != null && !maxC.getText().equals("")) ? Integer.valueOf(maxC.getText()) : null, 
 					selectedGoods, 
-					(List<Integer>) selectedLicenses.values(),
+					licenses, 
 					(minUnitPrice.getText() != null && !minUnitPrice.getText().equals("")) ? Integer.valueOf(minUnitPrice.getText()) : null,
 					(maxUnitPrice.getText() != null && !maxUnitPrice.getText().equals("")) ? Integer.valueOf(maxUnitPrice.getText()) : null);
 		} catch (Exception e) {
