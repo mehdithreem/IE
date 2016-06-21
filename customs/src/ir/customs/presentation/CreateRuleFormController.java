@@ -106,7 +106,7 @@ public class CreateRuleFormController {
 		licenses.addAll(selectedLicenses.values());
 		
 		try {
-			RuleManager.getManager().submitRule(
+			ruleID = RuleManager.getManager().submitRule(
 					startDate.getValue(), 
 					endDate.getValue(),
 					(minW.getText() != null && !minW.getText().equals("")) ? Integer.valueOf(minW.getText()) : null, 

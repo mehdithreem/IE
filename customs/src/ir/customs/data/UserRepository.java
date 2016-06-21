@@ -1,7 +1,12 @@
 package ir.customs.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import ir.customs.domain.Agent;
 import ir.customs.domain.User;
 import ir.customs.tools.HibernateUtils;
 
@@ -29,13 +34,6 @@ public class UserRepository {
 		return usr;
 	}
 	
-//	public List<User> getAll() {
-//		Session session = HibernateUtils.getSessionFactory().openSession();
-//		List<User> list = session.createCriteria(User.class).list();
-//		session.close();
-//		return list;
-//	}
-	
 	public void update(User usr){
 		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -44,4 +42,14 @@ public class UserRepository {
 		session.close();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Agent> getAllAgents() {
+		List<Agent> agents = new ArrayList<Agent>();
+		Session session = HibernateUtils.getSessionFactory().openSession();
+
+		agents.addAll(session.createCriteria(Agent.class).list());
+		
+		session.close();
+		return agents;
+	}
 }

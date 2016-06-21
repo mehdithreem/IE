@@ -68,7 +68,13 @@ public class UserManager {
 	}
 	
 	public Map<String,String> getAgentList() {
-		return new HashMap<String,String>();
+		Map<String,String> retmap = new HashMap<String,String>();
+		
+		for(Agent e : UserRepository.getRepository().getAllAgents()) {
+			retmap.put(e.getNationalID(), e.getOrganizationName());
+		}
+		
+		return retmap;
 	}
 	
 	public void signOut() {
