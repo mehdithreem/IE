@@ -47,29 +47,29 @@ public class RuleManager {
 	
 	public List<License> getRelatedLicenses(Declaration dec){
 		List <License> ret = new ArrayList<License>();
-			List <Rule> rl = RuleRepository.getRepository().getAll();
-			LocalDate decDate = dec.getDeclareDate();
-			Set <Good> decGoods = dec.getGoods();
-			for(Rule r : rl){
-				
-				LocalDate rSDate = r.getStartDate();
-				LocalDate rEDate = r.getEndDate();
-				if( (rSDate!=null && decDate.isBefore(rSDate)) || (rEDate!=null && decDate.isAfter(rEDate)) )
-					continue;
-				
-				List <String> gl = r.getGood();
-				for(String rg : gl)
-					for(Good dg : decGoods)
-						if(dg.getName().equals(rg)){
-							if( ( (r.getMaxCount()!=null) && (dg.getCount() < r.getMaxCount()) ) && 
-								( (r.getMinCount()!=null) && (dg.getCount() > r.getMinCount()) ) &&
-								( (r.getMaxUnitPrice()!=null) && (dg.getUnitPrice() < r.getMaxUnitPrice()) ) &&
-								( (r.getMinUnitPrice()!=null) && (dg.getUnitPrice() > r.getMinUnitPrice()) ) &&
-								( (r.getMaxWeight()!=null) && (dg.getWeight() < r.getMaxWeight()) ) &&
-								( (r.getMinWeight()!=null) && (dg.getWeight() > r.getMinWeight()) ))
-									ret.addAll(r.getLicenses());
-						}	
-			}
+		List <Rule> rl = RuleRepository.getRepository().getAll();
+		LocalDate decDate = dec.getDeclareDate();
+		Set <Good> decGoods = dec.getGoods();
+		for(Rule r : rl){
+			
+			LocalDate rSDate = r.getStartDate();
+			LocalDate rEDate = r.getEndDate();
+			if( (rSDate!=null && decDate.isBefore(rSDate)) || (rEDate!=null && decDate.isAfter(rEDate)) )
+				continue;
+			
+			List <String> gl = r.getGood();
+			for(String rg : gl)
+				for(Good dg : decGoods)
+					if(dg.getName().equals(rg)){
+						if( ( (r.getMaxCount()!=null) && (dg.getCount() < r.getMaxCount()) ) ||
+							( (r.getMinCount()!=null) && (dg.getCount() > r.getMinCount()) ) ||
+							( (r.getMaxUnitPrice()!=null) && (dg.getUnitPrice() < r.getMaxUnitPrice()) ) ||
+							( (r.getMinUnitPrice()!=null) && (dg.getUnitPrice() > r.getMinUnitPrice()) ) ||
+							( (r.getMaxWeight()!=null) && (dg.getWeight() < r.getMaxWeight()) ) ||
+							( (r.getMinWeight()!=null) && (dg.getWeight() > r.getMinWeight()) ))
+								ret.addAll(r.getLicenses());
+					}	
+		}
 		return ret;
 	}
 }

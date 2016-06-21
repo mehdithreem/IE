@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import ir.customs.data.DeclarationRepository;
-import ir.customs.data.LicenseRepository;
 import ir.customs.data.MerchantRepository;
 import ir.customs.data.PermissionRepository;
 import ir.customs.domain.Declaration;
