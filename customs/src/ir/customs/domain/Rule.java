@@ -43,7 +43,7 @@ public class Rule {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> good;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<License> licenses;
 	
 	@Column(name = "MAX_UNIT_PRICE")

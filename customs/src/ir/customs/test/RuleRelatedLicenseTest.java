@@ -13,6 +13,7 @@ import ir.customs.data.DeclarationRepository;
 import ir.customs.domain.Agent;
 import ir.customs.domain.Declaration;
 import ir.customs.domain.Good;
+import ir.customs.domain.Transport;
 import ir.customs.domain.manager.DeclarationManager;
 import ir.customs.domain.manager.LicenseManager;
 import ir.customs.domain.manager.RuleManager;
@@ -78,11 +79,11 @@ public class RuleRelatedLicenseTest {
 		good1map.put("goodUnitPrice", "10");
 		
 		Map<String,String> good2map = new HashMap<String,String>();
-		good1map.put("goodName", "good2");
-		good1map.put("goodProducer", "unkown");
-		good1map.put("goodWeight", "20");
-		good1map.put("goodCount", "20");
-		good1map.put("goodUnitPrice", "10");
+		good2map.put("goodName", "good2");
+		good2map.put("goodProducer", "unkown");
+		good2map.put("goodWeight", "20");
+		good2map.put("goodCount", "20");
+		good2map.put("goodUnitPrice", "10");
 		
 		dec1Goods.add(good1map);
 		dec1Goods.add(good2map);
@@ -94,18 +95,18 @@ public class RuleRelatedLicenseTest {
 				null /*merchantFirstName*/,
 				null /*merchantLastName*/,
 				"China" /*sourceCountry*/,
-				"زمینی" /*transportPersianName*/,
+				Transport.Land.getPersianName() /*transportPersianName*/,
 				dec1Goods /*goods*/);
 		} catch (ArgumentNotFoundException e) {
-			fail("Cannot create declaration");
 			e.printStackTrace();
+			fail("Cannot create declaration");
 			return;
 		}
 		
 		Declaration dec1 = DeclarationRepository.getRepository().read(decid1);
 		
 		assertEquals("Required Licenses is not 1", 1, dec1.getRequiredLicenses().size());
-		assertEquals("Required License is different", licid1, dec1.getRequiredLicenses().get(0));
+		assertEquals("Required License is different", licid1, dec1.getRequiredLicenses().get(0).getId());
 	}
 
 }
