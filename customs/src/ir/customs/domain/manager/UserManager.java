@@ -1,6 +1,8 @@
 package ir.customs.domain.manager;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -63,6 +65,10 @@ public class UserManager {
 		}
 		
 		return 0;
+	}
+	
+	public Map<String,String> getAgentList() {
+		return new HashMap<String,String>();
 	}
 	
 	public void signOut() {
