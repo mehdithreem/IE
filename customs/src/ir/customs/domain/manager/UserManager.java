@@ -46,7 +46,7 @@ public class UserManager {
 		
 		User nuser = null;	
 		try {
-			nuser = (User) userClass.getConstructors()[0].newInstance(NID, firstName, lastName, password);
+			nuser = (User) userClass.getConstructors()[0].newInstance(NID, password, firstName, lastName);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {
 			e.printStackTrace();
